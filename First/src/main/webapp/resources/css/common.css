@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap');
+*{box-sizing: border-box;}
+body{
+	background-color: ;
+	font-family: 'Noto Sans KR', sans-serif;
+	margin: 0;
+	padding: 0;
+	font-size: 14px;
+	color: #141414;
+}
+ul{
+	margin:0;
+	padding: 0;
+	list-style: none;			
+}
+a{
+		color: inherit;
+	text-decoration: none;
+}
+	.f-color1{color: #3885CA;}
+	.f-color2{color: #EBA444;}
+	.f-color3{color: #D1D1DD;}
+	.bg-color1{background-color: #3885CA;}
+	.bg-color2{background-color: #EBA444;}
+	.bg-color3{background-tfcolor: #D1D1DD;}
+button.btn{
+			display: inline-block;
+			font-weight: 600;
+			text-align: center;
+			font-size: 15px;
+			border-radius: 5px;
+			cursor: pointer;
+			padding: 11px 12px;
+			border:1px solid transparent;
+			/*background-color: white;*/
+		}
+		button.btn-basic{			
+			border: 1px solid #686f7a;
+			background-color: white;
+			color: #686f7a;
+		}
+		button.btn-basic:hover{
+			color:#2f3138;
+			border-color: #2f3138;
+		}
+		button.btn-primary{
+			background-color: #3885CA;			
+			color: white;			
+		}
+		button.btn-primary:hover{
+			background-color: #0f4c81;
+			border-color: transparent;
+		}
+		button.btn-support{
+			border: 1px solid #eba444;
+			
+			color: white; 
+		}
+		button.btn-support:hover{
+			background-color: #CA8420;
+			border-color: transparent;
+		}
