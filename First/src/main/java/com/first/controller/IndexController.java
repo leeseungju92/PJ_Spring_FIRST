@@ -22,7 +22,7 @@ public class IndexController {
 		log.info(">>>>>INDEX PAGE 출력");
 		
 		
-		//List<ProductDTO> list = iservice.bestPdtList();
+		List<ProductDTO> list = iservice.bestPdtList();
 		
 		model.addAttribute("BestPdt" , iservice.bestPdtList());
 		

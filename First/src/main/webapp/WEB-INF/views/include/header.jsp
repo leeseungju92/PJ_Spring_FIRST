@@ -76,7 +76,7 @@ div.header_content {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	width: 280px;
+	width: 300px;
 }
 
 .header_content_nav>div { /*w제품목록 빨간줄로 나누기*/
@@ -440,7 +440,7 @@ div.content_wrap_main {
 						</div>
 					</form>
 				</div>
-
+			<div class=header_content_nav>
 				<div class="header_content_dropdown_wrap">
 					<div class="header_content_dropdown_group">
 						<a href="#">서초구</a>
@@ -499,7 +499,7 @@ div.content_wrap_main {
 						</div>
 					</div>
 				</div>
-
+			</div>
 				<div class="header_content_member">
 					<div class="header_content_dropdown_wrap">
 						<div class="header_content_dropdown_group">

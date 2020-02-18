@@ -1,6 +1,8 @@
 package com.first.domain;
 
-import java.util.Date;
+
+
+import java.sql.Date;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,12 +16,9 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 public class ProductDTO {
-	private int pno;
-	private String pname;
-	private String ptype;
-	private String pmemo;
-	private int price;
-	private int avail_cnt;
-	private int sale_cnt;
+	private int nno;
+	private String ntitle;
+	private String ncontent;
+	private String nhref; // 다음에서 가져왔는지 네이버에서 가져왔는지 타사이트에서 가져왔는지 알기위해.
 	private Date regdate;	
 }

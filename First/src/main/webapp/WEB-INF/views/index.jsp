@@ -99,6 +99,7 @@ div.information {
 
 .newscrawl {
 	width: 80%;
+	overflow: hidden;
 	padding: 3px, 0;
 	box-sizing: border-box;
 	border: 1px solid red;
@@ -181,74 +182,23 @@ div.middle {
 <body>
 	<div class="content_wrap_main">
 		<div class="content_main">
+			
+			
 			<div class="content_main_text">
+				<c:forEach items="${BestPdt}" var="pdt">								
 				<div class="newscrawl_wrap">
 					<div class="newscrawl">
-						<a><strong>부동산 뉴스(네이버) 투데이 1번</strong></a>
+						<a href="${pdt.nhref }"><strong>"${pdt.ntitle}"</strong></a>
 					</div>
 					<div class="newscrawl_inf">
-						<span>신문사</span><span>일자</span>
+						<span><fmt:formatDate value="${pdt.regdate}" type="date"></fmt:formatDate></span>
 					</div>
-				</div>
-
-
-				<div class="newscrawl_wrap">
-					<div class="newscrawl">
-						<a><strong>부동산 뉴스(네이버) 투데이 1번</strong></a>
-					</div>
-					<div class="newscrawl_inf">
-						<span>신문사</span><span>일자</span>
-					</div>
-				</div>
-				<div class="newscrawl_wrap">
-					<div class="newscrawl">
-						<a><strong>부동산 뉴스(네이버) 투데이 1번</strong></a>
-					</div>
-					<div class="newscrawl_inf">
-						<span>신문사</span><span>일자</span>
-					</div>
-				</div>
-				<div class="newscrawl_wrap">
-					<div class="newscrawl">
-						<a><strong>부동산 뉴스(네이버) 투데이 1번</strong></a>
-					</div>
-					<div class="newscrawl_inf">
-						<span>신문사</span><span>일자</span>
-					</div>
-				</div>
-				<div class="newscrawl_wrap">
-					<div class="newscrawl">
-						<a><strong>부동산 뉴스(네이버) 투데이 1번</strong></a>
-					</div>
-					<div class="newscrawl_inf">
-						<span>신문사</span><span>일자</span>
-					</div>
-				</div>
-				<div class="newscrawl_wrap">
-					<div class="newscrawl">
-						<a><strong>부동산 뉴스(네이버) 투데이 1번</strong></a>
-					</div>
-					<div class="newscrawl_inf">
-						<span>신문사</span><span>일자</span>
-					</div>
-				</div>
-				<div class="newscrawl_wrap">
-					<div class="newscrawl">
-						<a><strong>부동산 뉴스(네이버) 투데이 1번</strong></a>
-					</div>
-					<div class="newscrawl_inf">
-						<span>신문사</span><span>일자</span>
-					</div>
-				</div>
-				<div class="newscrawl_wrap">
-					<div class="newscrawl">
-						<a><strong>부동산 뉴스(네이버) 투데이 1번</strong></a>
-					</div>
-					<div class="newscrawl_inf">
-						<span>신문사</span><span>일자</span>
-					</div>
-				</div>
+				</div>			
+				</c:forEach>
 			</div>
+			
+
+			
 			<div class="content_main_text">
 				<div class="content_main_easysearch">
 					<div class="content_main_easycontent">
