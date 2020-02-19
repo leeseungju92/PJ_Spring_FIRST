@@ -404,7 +404,7 @@ div.content_wrap_main {
 
 			<div class="info_user">
 				<div>
-					<a href="../include/FIRST_constract.html" class="link_join">회원가입</a>
+					<a href="${path}/member/constract" class="link_join">회원가입</a>
 				</div>
 				<ul class="list_user">
 					<li><a href="#" class="link_user">계정찾기</a></li>
@@ -524,8 +524,8 @@ div.content_wrap_main {
 					<div>
 						<button type="button" class="btn btn-basic login_open">로그인</button>
 					</div>
-					<a href="../include/FIRST_constract.html" style="margin-left: 3px;"><div>
-							<button type="button" class="btn btn-primary">회원가입</button>
+					<a href="${path}/member/constract" style="margin-left: 3px;"><div>
+							<button type="button" id="header_btn_join" class="btn btn-primary">회원가입</button>
 						</div></a>
 				</div>
 			</div>
@@ -566,6 +566,7 @@ div.content_wrap_main {
 		$(this).css('border-bottom-color', '#3885ca');
 		$(this).css('outline', 'none');
 	});
+	
 
 	$(document).on(
 			'click',

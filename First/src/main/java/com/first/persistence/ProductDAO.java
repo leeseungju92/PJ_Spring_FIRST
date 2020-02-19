@@ -14,5 +14,5 @@ public interface ProductDAO {
 //	public int getCount2();
 	
 	public List<ProductDTO> bestPdtList();
-
+	
 }
