@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.first.domain.SampleDTO;
 
@@ -58,5 +59,17 @@ public class SampleController {
 //		log.info(user+","+pass);
 		log.info(sDto.toString());
 		return "result";
-	}	
+	}
+	@GetMapping("/sync")
+	public String sync(String name, Model model) {
+		log.info("동기방식"+name);
+		model.addAttribute("name", name);
+		return "sample";
+	}
+	@ResponseBody
+	@PostMapping(value="/ajax", produces="application/text;charset=utf-8")
+	public String async(String name) {
+		log.info("비동기방식" + name);		
+		return name;
+	}
 }

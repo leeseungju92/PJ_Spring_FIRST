@@ -3,6 +3,7 @@
 <%@ include file="../include/include.jsp"%>
 <html>
 <head>
+	
 	<title>tumbland_join.html</title>
 	<!-- favicon: 제목줄의 아이콘 -->
 	<link rel="icon" type="image/png" href="../../img/tumbland_favicon_transparent_crop.png">
@@ -609,13 +610,14 @@
 		});
 
 		// 버튼 활성화!
-		$('.join_info_box_input').blur(function(){
+		/* $('.join_info_box_input').blur(function(){ */
+			$('.join_info_box_input').keyup(function(){ 
 			var checkAll = true;
 
 			for(var i = 0; i < checkArr.length; i++) {
 				if(!checkArr[i]) {
 					checkAll = false;
-				}
+				}				
 			}
 			if(checkAll) {
 				$('#btn_join').addClass('btn-primary');

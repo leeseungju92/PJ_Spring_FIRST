@@ -15,5 +15,30 @@
 		<input type="password" name="pass">
 		<button type="submit">Post</button>
 	</form>
+	
+	
+	<img src="${path}/resources/img/sleeper.png" style="width:500px; height:500px;">
+	<br>
+	<a href="${path}/sample/sync?name=배뚱아"> 동기방식</a>
+	<button type="button" id="ajax_btn">비동기방식(ajax)</button>
+	<br>
+	<div><span>동기:${name}</span></div>
+	<div><span>비동기:<span id = "ajax_txt"></span></span></div>
 </body>
+<script type="text/javascript">
+	$('#ajax_btn').on('click', function(){		
+		$.ajax({
+			type: 'POST',
+			url: '${path}/sample/ajax?',			
+			data : {name:'뚱깐징어'},			
+			success:function(args){
+				console.log(args);			
+				$('#ajax_txt').text(args);
+			},
+			error:function(){
+				alert('System ERROR :(');
+			}
+		});
+});
+</script>
 </html>
