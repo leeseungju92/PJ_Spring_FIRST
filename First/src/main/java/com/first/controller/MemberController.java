@@ -31,10 +31,16 @@ public class MemberController {
 	
 	@ResponseBody
 	@PostMapping("/idoverlap")
-	public int idOverlap(String id) {
+	public String idOverlap(String id) {
 		log.info(">>>> ID OVERLAP CHECK");
 		log.info("아이디:"+id);
-		return mService.idOverlap(id);
+		
+		int cnt = mService.idOverlap(id);
+		String flag = "1";
+		if(cnt==0) {
+			flag="0";
+		}
+		return flag;
 	}
 	
 	

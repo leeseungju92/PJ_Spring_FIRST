@@ -524,9 +524,9 @@ div.content_wrap_main {
 					<div>
 						<button type="button" class="btn btn-basic login_open">로그인</button>
 					</div>
-					<a href="${path}/member/constract" style="margin-left: 3px;"><div>
+					<a href="${path}/member/constract" style="margin-left: 3px;">
 							<button type="button" id="header_btn_join" class="btn btn-primary">회원가입</button>
-						</div></a>
+						</a>
 				</div>
 			</div>
 		</div>

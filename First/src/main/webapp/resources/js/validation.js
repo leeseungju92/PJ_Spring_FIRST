@@ -259,7 +259,8 @@ function idCheck(id){
 				return_val = false;
 			}			
 		},
-		error: function(){			
+		error: function(){
+			alert('syserr');
 		}
 	});
 	return return_val;

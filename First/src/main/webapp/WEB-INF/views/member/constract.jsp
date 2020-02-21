@@ -343,7 +343,7 @@
 				<form class="join_content"
 				      name=""
 				      action=""
-				      method="">
+				      >
 					<div class="terms">
 						<p class="terms_p">
 							<span class="terms_span">
