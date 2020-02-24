@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../include/include.jsp"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
 	
@@ -8,7 +9,7 @@
 	<!-- favicon: 제목줄의 아이콘 -->
 	<link rel="icon" type="image/png" href="../../img/tumbland_favicon_transparent_crop.png">
 	<script src="https://kit.fontawesome.com/fc5ae9294d.js" crossorigin="anonymous"></script>
-	<link rel="stylesheet" type="text/css" href="../../css/common.css">
+	<link rel="stylesheet" type="text/css" href="${path}/resources/css/common.css">
 	<style type="text/css">
 		* { /* 모든 태그의 글씨체 돋움 width height 고정*/
 			font-family: Dotum,'돋움',Helvetica,sans-serif;
@@ -247,7 +248,8 @@
 			<!-- form태그로 싸야 데이터를 가져갈 수 있다 -->
 			<!-- 값을 숨겨야 하는건(개인정보관련) POST방식(회원가입할때 값이 노출되면 안되니까) -->
 			<!-- 검색할 때는 GET방식으로 값을 보냄(주소창에 값이 노출) -->
-			<form name="frm_join" action="" method="POST">
+			<!-- <form id="frm_member" name="frm_join" action="${path}/member/join" method="POST"> -->
+			<form:form id="frm_member" modelAttribute="memberDTO" autocomplete="on">
 				<div class="container">
 					<div class="join_content">
 						<div class="row_group">
@@ -257,7 +259,7 @@
 									<label for="uid">아이디</label>
 								</h3>
 								<span class="join_info_box_content ps_box int_id">
-									<input type="text" id="uid" name="uid" class="join_info_box_input int">
+									<input type="text" id="uid" name="id" class="join_info_box_input int">									
 									<span class="step_url">@naver.com</span>
 								</span>
 								<span class="join_err_msg">필수 정보입니다.</span>
@@ -268,7 +270,7 @@
 									<label for="upw">비밀번호</label>
 								</h3>
 								<span class="join_info_box_content ps_box int_pass">
-									<input type="text" id="upw" name="upw" class="join_info_box_input int">
+									<input type="text" id="upw" name="pw" class="join_info_box_input int">
 									<span class="step_url"><span class="pw_lock"></span></span>
 								</span>
 								<!-- <span class="join_err_msg">필수 정보입니다.</span> -->
@@ -295,7 +297,7 @@
 									<label for="uname">이름</label>
 								</h3>
 								<span class="join_info_box_content ps_box"><!-- icon 안들어가서 int태그 지운다 -->
-									<input type="text" id="uname" name="uname" class="join_info_box_input int">
+									<input type="text" id="uname" name="name" class="join_info_box_input int">
 								</span>
 								<span class="join_err_msg">필수 정보입니다.</span>
 							</div>
@@ -357,7 +359,7 @@
 									<label for="uemail">본인 확인 이메일<span class="choice">(선택)</span></label>
 								</h3>
 								<span class="join_info_box_content ps_box"><!-- icon 안들어가서 int태그 지운다 -->
-									<input type="text" id="uemail" name="uemail" class="join_info_box_input int" placeholder="선택입력">
+									<input type="text" id="uemail" name="email" class="join_info_box_input int" placeholder="선택입력"><span class="email_cnt"></span>
 								</span>
 								<span class="join_err_msg">필수 정보입니다.</span>
 							</div>
@@ -367,7 +369,7 @@
 									<label for="uphone">휴대전화</label>
 								</h3>
 								<span class="join_info_box_content ps_box"><!-- icon 안들어가서 int태그 지운다 -->
-									<input type="tel" id="uphone" name="uphone" class="join_info_box_input int" placeholder="-없이 입력, 예)01012345678">
+									<input type="tel" id="uphone" name="phone" class="join_info_box_input int" placeholder="-없이 입력, 예)01012345678">
 								</span>
 								<span class="join_err_msg">필수 정보입니다.</span>
 							</div>
@@ -379,15 +381,16 @@
 								<div class="addr_wrap">
 									<div class="postcode" style="display: flex;">
 										<span class="join_info_box_content ps_box addr_poc">
-											<input type="text" id="sample6_postcode" class="join_info_box_input int addr_only" placeholder="우편번호" value="52123" readonly>
+											<input name = "postcode" type="text" id="sample6_postcode" class="join_info_box_input int addr_only" placeholder="우편번호" >
 										</span>
 										<input type="button" id='btn_post' class='join_info_box_input addr_poc_button' onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
 									</div>
 									<span class="join_info_box_content ps_box">
-										<input type="text" id="sample6_address" class="join_info_box_input int addr_only" placeholder="주소" value="광주광역시 북구 중흥동" readonly><br>
-									</span>
+										<input name="addr1" type="text" id="sample6_address" class="join_info_box_input int addr_only" placeholder="주소" ><br>
+									</span>									
 									<span class="join_info_box_content ps_box">
-										<input type="text" id="sample6_detailAddress" class="join_info_box_input int" placeholder="상세주소">
+										<input type="hidden" id="sample6_extraAddress" placeholder="참고항목">
+										<input name="addr2" type="text" id="sample6_detailAddress" class="join_info_box_input int" placeholder="상세주소">
 									</span>
 								</div>
 								<span class="join_err_msg">필수 정보입니다.</span>
@@ -400,7 +403,8 @@
 						</div>
 					</div>
 				</div>
-			</form>
+			<%-- </form> --%>
+			</form:form>
 		</section>
 		<footer>
 			<div id="footer">
@@ -435,7 +439,13 @@
 	$(document).ready(function(){
 
 	});
+	
 	$(function(){
+		var flag = '${flag}';
+		if(flag == 0){
+			location.href="${path}/member/constract";
+		}
+	
 		// 비밀번호가 유효한 값인지 체크해주는 Flag값
 		var pwFlag = false;
 
@@ -561,6 +571,8 @@
 		// 이메일 유효성체크
 		$('#uemail').keyup(function(){
 			var email = $.trim($(this).val());
+			$('.email_cnt').text(email.length);
+			
 			var result = joinValidate.checkEmail(email);
 
 			if(result.code == 0) {
@@ -644,6 +656,10 @@
 
 			if(invalidAll) { // 유효성체크가 전부 true이면
 				alert('회원가입 성공!');
+				//submit : form 태그 안에있는 데이터들을 서버단으로 전송
+				//action : 목적지 (membercontroller/join)
+				//method 방법 POST 숨겨서
+				$('#frm_member').submit();
 			} else { // 하나라도 false이면
 				alert('유효성체크를 진행해주세요!');
 			}

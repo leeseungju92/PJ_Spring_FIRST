@@ -58,6 +58,7 @@ public class SampleController {
 		log.info("Post방식호출");
 //		log.info(user+","+pass);
 		log.info(sDto.toString());
+		
 		return "result";
 	}
 	@GetMapping("/sync")

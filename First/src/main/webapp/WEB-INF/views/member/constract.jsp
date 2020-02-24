@@ -495,7 +495,7 @@
 				$('.err_check').css('display','block');
 				return false;
 			}
-			location.href='${path}/member/join?useon='+agree_one+'&primaryon='+agree_two+'&locon='+agree_three+'&eventon='+agree_four;
+			location.href='${path}/member/join?useon='+agree_one+'&primaryon='+agree_two+'&locon='+agree_three+'&eventon='+agree_four+'&flag=1';
 		});
 		$('#con_btn_cancle').on('click' , function(){
 			
