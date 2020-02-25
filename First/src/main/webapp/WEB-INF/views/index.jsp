@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="include/header.jsp"%>
+<%@ include file="include/modal.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -315,6 +316,55 @@ div.middle {
 	
 	
 	
+	<div class="content_wrap_inf">
+		<div class="content_inf">
+			<div class="content_inf_text">
+				<a
+					href="https://post.naver.com/viewer/postView.nhn?volumeNo=25443036&memberNo=2120568">
+					<div class="information">
+						매물 체크리스트<br>
+						<br> 방 구하기 전<br> 꼭 확인하자
+					</div> <i class="fas fa-play"></i>
+				</a>
+			</div>
+			<div class="content_inf_text">
+				<a
+					href="https://post.naver.com/viewer/postView.nhn?volumeNo=27011368&memberNo=2120568">
+					<div class="information">
+						허위매물<br>
+						<br> 예방하자<br> 5계명!<br>
+					</div> <i class="fas fa-play"></i>
+				</a>
+			</div>
+			<div class="content_inf_text">
+				<a
+					href="https://post.naver.com/viewer/postView.nhn?volumeNo=26596142&memberNo=2120568">
+					<div class="information">
+						임대차 계약 작성시<br>
+						<br> 이것만은 꼭<br> 알아두자
+					</div> <i class="fas fa-play"></i>
+				</a>
+			</div>
+			<div class="content_inf_text">
+				<a
+					href="https://post.naver.com/viewer/postView.nhn?volumeNo=26344001&memberNo=2120568">
+					<div class="information">
+						19~34세<br>
+						<br> 알아 두면 좋은<br> 청년 주거지원 정책<br>
+					</div> <i class="fas fa-play"></i>
+				</a>
+			</div>
+			<div class="content_inf_text" style="margin: 0;">
+				<a
+					href="https://post.naver.com/viewer/postView.nhn?volumeNo=25389507&memberNo=2120568">
+					<div class="information">
+						이사체크리스트<br>
+						<br> 이사한다면<br> 필독!
+					</div> <i class="fas fa-play"></i>
+				</a>
+			</div>
+		</div>
+	</div>
 	<div class="content_wrap_inf">
 		<div class="content_inf">
 			<div class="content_inf_text">

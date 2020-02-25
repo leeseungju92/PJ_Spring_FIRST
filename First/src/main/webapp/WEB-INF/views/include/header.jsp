@@ -309,7 +309,7 @@ td {
 	background-image: url('${path}/resources/img/check_in.png');
 }
 
-.fix_btn>button {
+.header_fix_btn>button {
 	color: rgb(142, 142, 142);
 	border: none;
 	background: white;
@@ -318,11 +318,11 @@ td {
 	outline: none;
 }
 
-.fix_btn>button:hover {
+.header_fix_btn>button:hover {
 	color: red;
 }
 
-.fix_btn {
+.header_fix_btn {
 	position: absolute;
 	right: 8px;
 	top: 8px;
@@ -350,16 +350,49 @@ div.content_wrap_main {
 	width: 100%;
 	background-color: white;
 }
-
+.top_btn{
+			bottom: 115px;
+			background-color: #414d41;
+			display: none;
+			
+		}
+		.fix_btn{
+				width: 50px;
+				height: 50px;
+				right: 20px;
+				font-size: 20px;
+			}
+		.fix_btn{
+			position: fixed;
+			right: 50px;
+			
+			color: white;
+			width: 70px;
+			height: 70px;
+			background-color: #7d2c38;
+			border-radius: 50%;
+			display: flex;
+			justify-content: center;
+			align-items:center;
+			font-size: 25px;
+			cursor: pointer;
+			box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2), 0 4px 20px 0 rgba(0,0,0,0.19);
+		}	
+		.fix_btn>i{
+			transition: transform .3s;
+		}
+		.fix_btn:hover > i{
+			transform:scale(3);
+		}
 
 </style>
 </head>
 <body>
-
+	<div class="top_btn fix_btn"><i class="fas fa-arrow-up"></i></div>
 	<div class="modal_wrap">
 
 		<div class="modal_content">
-			<div class="fix_btn">
+			<div class="header_fix_btn">
 				<button class="close_btn" type="button">
 					<i class="fas fa-times"></i>
 				</button>
@@ -542,6 +575,21 @@ div.content_wrap_main {
 	//.css()=옵션 글자색 그린		
 	//jquery 이벤트 문법 (클릭, 포커스, 블러등)
 	//$(document).on('이벤트','선택자'function())
+	$(document).ready(function(){		
+		
+
+		$(window).scroll(function(){
+			if(document.body.scrollTop > 80 || document.documentElement.scrollTop >80){
+				$('.top_btn').fadeIn().css("display","flex");
+			}
+			else{
+				$('.top_btn').fadeOut();
+			}
+		});
+		$('.top_btn').click(function(){
+			$('html, body').animate({scrollTop : 0},800);
+		});
+	});
 	$(document).on('click', '.login_open', function() {
 		$('.modal_wrap').css('display', 'flex');
 		$('#login_id').focus();

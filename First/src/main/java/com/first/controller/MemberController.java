@@ -1,6 +1,9 @@
 package com.first.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.first.domain.MemberDTO;
+import com.first.service.mail.MailService;
 import com.first.service.member.MemberService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -39,7 +44,10 @@ import lombok.extern.slf4j.Slf4j;
 public class MemberController {
 	@Autowired
 	MemberService mService;
-	
+	@Autowired	
+	PasswordEncoder passwordEncoder;
+	@Autowired
+	private MailService mailService;
 	@ModelAttribute("memberDTO")
 	public MemberDTO newMember(){
 		return new MemberDTO();
@@ -70,16 +78,20 @@ public class MemberController {
 	 * 단, 이 기능을 효율적으로 사용하려면 jsp코드에서 Spring -form tag로 input을 코딩해야한다	 
 	 */
 	@PostMapping("/join")
-	public String join(@ModelAttribute("memberDTO") MemberDTO mDto, SessionStatus sessionStatus) {
+	public String join(@ModelAttribute("memberDTO") MemberDTO mDto, SessionStatus sessionStatus, HttpServletRequest request, RedirectAttributes rttr) {
 		log.info(">>>>>>>>> 멤바 쪼인 포스트 디비에 회원정보 저장");
 		log.info(mDto.toString());
+		log.info("Password:"+mDto.getPw());
+		String encPw= passwordEncoder.encode(mDto.getPw());
+		mDto.setPw(encPw);
+		log.info("password(+Hash):" +mDto.getPw());
 		int result = mService.memInsert(mDto);
 		if(result>0) {
 			log.info(">>>>>>"+mDto.getId()+"님 회원가입되셨습니다.");
 		}
 		
 		
-		
+		mailService.mailSendUser(mDto.getEmail(), mDto.getId(), request);
 		/*
 		 * 세션어트리뷰트를 사용할때 , 인서트, 업데이트가 완료되고 뷰로 보내기전 반드시
 		 * 셋컴플리트를 실행하여 세션에 담긴값을 클리어 해주어야한다.
@@ -87,7 +99,14 @@ public class MemberController {
 		
 		sessionStatus.setComplete();
 		
-		return "";
+		return "redirect:/";
+	}
+	@GetMapping("keyauth")
+	public String keyAuth(String id, String key, RedirectAttributes rttr) {
+		mailService.keyAuth(id, key);
+		rttr.addFlashAttribute("id",id);
+		rttr.addFlashAttribute("key", "auth");
+		return "redirect:/";
 	}
 	
 	@ResponseBody
