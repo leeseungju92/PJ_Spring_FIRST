@@ -98,6 +98,7 @@ div.header_content {
 
 .header_content_dropdown_group {
 	position: relative;
+	z-index:1001;
 }
 
 .header_content_dropdown_group>a {

@@ -99,6 +99,10 @@ public class MemberController {
 		
 		sessionStatus.setComplete();
 		
+		rttr.addFlashAttribute("id", mDto.getId());
+		rttr.addFlashAttribute("email", mDto.getEmail());
+		rttr.addFlashAttribute("key", "join");
+		
 		return "redirect:/";
 	}
 	@GetMapping("keyauth")

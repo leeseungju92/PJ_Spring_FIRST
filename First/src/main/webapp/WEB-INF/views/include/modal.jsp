@@ -14,7 +14,7 @@
 			overflow: auto;
 			width: 100%;
 			height: 100%;
-			display: flex;/* 이줄포함 밑 두줄 모달창 가운데로 오게 해준다.*/
+			display: none;/* 이줄포함 밑 두줄 모달창 가운데로 오게 해준다.*/
 			justify-content: center;
 			align-items: center;
 		}
@@ -50,7 +50,7 @@
 
 			font-size: 28px;font-weight: bold;
 		}
-		.include_wrap_btn .btn_g{
+		.include_wrap_btn .include_btn_g{
 			display: block;
 			width: 100%;
 			height:50px;
@@ -63,32 +63,72 @@
 			border-radius: 4px;
 			box-sizing: border-box;
 		}
+		.include_fix_btn > button{
+			color: rgb(142,142,142);
+			border:none;
+			background:white;
+			font-size: 30px;
+			cursor: pointer;
+			outline: none;
+
+		}
+		.include_fix_btn > button:hover{
+			color: red;
+		}
+		.include_fix_btn{ position: absolute;
+		 right: 8px;
+		 top: 8px;}
 	</style>
 </head>
 <body>
-	<div class="include_modal_wrap">		
+	<div class="include_modal_wrap modal_msg_wrap">		
 		<div class="include_modal_content">
 			<div class="include_fix_btn">
-				<button class="include_close_btn" type="button">
+				<button class="include_close_btn include_btn_g" type="button">
 					<i class="fas fa-times"></i>
 				</button>
 			</div>
 			<h1 id="include_kakaoServiceLogo"style="margin: 0 0 30px">
-				<span class="include_ir_wa">FIRST</span>				
+				<div id="modal_msg_main_txt"class="include_ir_wa"></div>				
 			</h1>		
-			<p>탈퇴 버튼을 클릭하시면 되돌릴 수 없습니다.</p>
-			
-									
-				<div class="include_wrap_btn">
-					<button class="include_btn_g" type="button" tabindex="3">취소</button>
-					<button class="include_btn_g" type="button" tabindex="3">확인</button>					
-				</div>
-			
+			<div id="modal_msg_sub_txt"></div>									
+				<div class="include_wrap_btn">					
+					<button id="modal_msg_yes" class="include_btn_g" type="button" tabindex="3">확인</button>					
+				</div>																			
 		</div>
 	</div>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script type="text/javascript">
+		$(function(){
+			var id = '${id}';
+			var email = '${email}';
+			var key = '${key}';
+			
+			var join_main_txt = id+'님 회원가입을 축하드립니다.';
+			var join_sub_txt = email +'으로 인증메일을 보냈습니다. 인증하세요';
+			var auth_main_txt = id+'님 이메일 인증되셨습니다.';
+			var auth_sub_txt = '지금부터 사이트 활동이 가능합니다. 감사합니다.';
+			
+			if(key=='join'){
+				$('#modal_msg_main_txt').text(join_main_txt);
+				$('#modal_msg_sub_txt').text(join_sub_txt);
+				$('#modal_msg_cancle').css('display','none');
+				$('.include_modal_wrap').css('display','flex');
+			}else if(key=='auth'){
+				$('#modal_msg_main_txt').text(auth_main_txt);
+				$('#modal_msg_sub_txt').text(auth_sub_txt);
+				$('#modal_msg_cancle').css('display','none');
+				$('.include_modal_wrap').css('display','flex');				
+			}
+			$('#modal_msg_yes').on('click', function(){
+				$('.include_modal_wrap').css('display', 'none');	
+			});
+			$('.include_close_btn').on('click', function(){
+				$('.include_modal_wrap').css('display', 'none');
+			});
+			
+		});	
 		// 제이쿼리 문법
 		// $('선택자').옵션();
 		//$('#test').css('color','green');
@@ -97,9 +137,6 @@
 		//.css()=옵션 글자색 그린		
 		//jquery 이벤트 문법 (클릭, 포커스, 블러등)
 		//$(document).on('이벤트','선택자'function())
-		$(document).on('click','.include_btn_g', function(){
-			$('.include_modal_wrap').css('display','none');
-			
-		});
+		
 	</script>
 </html>

@@ -237,6 +237,27 @@
 		#address a:hover {
 			color: #FF8C94;
 		}
+		#back{
+			 position:fixed;
+			 z-index:1200;
+			 background-color: rgba(0,0,0,0.4);
+			 overflow:auto;
+			 width:100%;
+			 height:100%;
+			 top:0;
+			 left:0;
+			 display:none;
+			 align-items:center;
+			 justify-content:center;
+		}
+		.loading_img{
+			animation:ani_loading 1.5s infinite linear;
+			font-size:70px;
+			color:#EBA444;
+		}
+		@keyframes ani_loading {
+			from{-webkit-transform:rotate(0deg);}
+			to{-webkit-transform:rotate(359deg);}
 	</style>
 </head>
 <body>
@@ -431,7 +452,6 @@
 		</footer>
 	</div>
 </body>
-<script type="../../js/daum_post.js"></script> <!-- daum 주소입력 관련 스크립트 -->
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript" src="${path}/resources/js/validation.js"></script>
@@ -655,7 +675,7 @@
 			printCheckArr(checkArr);
 
 			if(invalidAll) { // 유효성체크가 전부 true이면
-				alert('회원가입 성공!');
+				FunLoadingBarStart();
 				//submit : form 태그 안에있는 데이터들을 서버단으로 전송
 				//action : 목적지 (membercontroller/join)
 				//method 방법 POST 숨겨서
@@ -667,7 +687,16 @@
 		});
 
 	});
-
+	function FunLoadingBarStart(){
+		var loadingBarImage = '';
+		loadingBarImage += "<div id = 'back'>";
+		loadingBarImage += "<div id = 'loadingBar'>"
+		loadingBarImage += "<i class = 'fas fa-spinner loading_img'></i>";
+		loadingBarImage += "</div></div>";
+		$('body').append(loadingBarImage);
+		$('#back').css('display', 'flex');
+		$('#loadingImg').show();		
+	}
 	function ckDesign(code, desc, line, msg) { // line : border, msg : err msg
 		if(code == 0 || code == 10) { // 통과 O
 			// 테두리 색상 변경
