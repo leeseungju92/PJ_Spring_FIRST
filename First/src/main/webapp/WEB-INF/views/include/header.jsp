@@ -385,7 +385,9 @@ div.content_wrap_main {
 		.fix_btn:hover > i{
 			transform:scale(3);
 		}
-
+		#header_modal_err_msg{
+		display:none;
+		visiblity:hidden;}
 </style>
 </head>
 <body>
@@ -404,12 +406,18 @@ div.content_wrap_main {
 			</h1>
 
 			<div id="loginEmailField">
+				
+				
+				<div id="header_modal_err_msg">
+					
+				</div>
+				<form onsubmit="return false;"class="frm_login">
+					
+					
+					
 
-				<form name="" action="" method="post" class="frm_login">
 					<div>
-
-
-						<input id="login_id" class="item_inp item_tf" type="email"
+						<input id="login_id" class="item_inp item_tf" type="text"
 							placeholder="id를 입력해주세요" name="" required>
 						<div class="div_input" style="position: relative;">
 
@@ -418,7 +426,6 @@ div.content_wrap_main {
 								maxlength="18"> <span class="pw_eye"><i
 								class="fas fa-eye-slash"></i></span>
 						</div>
-
 					</div>
 
 					<div id="state">
@@ -428,7 +435,7 @@ div.content_wrap_main {
 
 
 					<div class="wrap_btn">
-						<button class="btn_g" type="submit" tabindex="3">로그인</button>
+						<button class="btn_g" id="btn_login" type="submit" tabindex="3">로그인</button>
 					</div>
 				</form>
 			</div>
@@ -437,14 +444,12 @@ div.content_wrap_main {
 
 
 			<div class="info_user">
-				<div>
-					<a href="${path}/member/constract" class="link_join">회원가입</a>
-				</div>
+				<div><a href="../include/FIRST_constract.html" class="link_join">회원가입</a></div>
 				<ul class="list_user">
-					<li><a href="#" class="link_user">계정찾기</a></li>
-					<b>&nbsp|&nbsp</b>
+					<li><a href="#" class="link_user">계정찾기</a></li><b>&nbsp|&nbsp</b>
 					<li><a href="#" class="link_user">비밀번호찾기</a></li>
 				</ul>
+			
 			</div>
 		</div>
 	</div>
@@ -556,11 +561,19 @@ div.content_wrap_main {
 						</div>
 					</div>
 					<div>
-						<button type="button" class="btn btn-basic login_open">로그인</button>
+						<c:choose>
+							<c:when test="${empty sessionScope.userid}">
+								<button type="button" class="btn btn-basic login_open">로그인</button>
+								<button type="button" id="header_btn_join" class="btn btn-primary">회원가입</button>
+							</c:when>
+							<c:otherwise>
+								<button type="button" class="btn btn-basic" id="header_btn_logout">로그아웃</button>
+							</c:otherwise>
+						</c:choose>
+						
+						
 					</div>
-					<a href="${path}/member/constract" style="margin-left: 3px;">
-							<button type="button" id="header_btn_join" class="btn btn-primary">회원가입</button>
-						</a>
+							
 				</div>
 			</div>
 		</div>
@@ -635,6 +648,39 @@ div.content_wrap_main {
 				}
 
 			});
-</script>
+	$(document).on('click','.close_btn',function(){
+	$('#header_modal_err_msg').css('display','none');
+	});
+	$(document).on('click','#btn_login',function(){
+		
+		var id = $('#login_id').val();
+		var pw = $('#login_pw').val();		
+		
+		if(id !='' && pw!='' && pw.length !=0 && id.length !=0){
+			$.ajax({
+				url:'${path}/login/in',
+				type: 'POST',
+				data: 'id='+id+'&pw='+pw,
+				success:function(data){					
+					console.log(data);
+					
+					if(data==0||data==3){
+						$('#header_modal_err_msg').css('display','block')
+						.text('로그인 중 문제가 발생했습니다. 아이디 및 비밀번호를 확인하거나 계정을 생성하십시오.');										
+					}else if(data==1){
+						console.log('로그인성공');
+						location.reload();
+					}else if(data==2){
+						$('#header_modal_err_msg').css('display','block').text('이메일 인증 후 로그인 할 수 있습니다.');
+					}
+				},
+				error:function(){
+					alert('System Error:/');
+				}				
+			});
+		}
+	});
 
+	
+</script>
 </html>

@@ -5,9 +5,9 @@
 <html>
 <head>
 	
-	<title>tumbland_join.html</title>
+	<title>first_join.html</title>
 	<!-- favicon: 제목줄의 아이콘 -->
-	<link rel="icon" type="image/png" href="../../img/tumbland_favicon_transparent_crop.png">
+	
 	<script src="https://kit.fontawesome.com/fc5ae9294d.js" crossorigin="anonymous"></script>
 	<link rel="stylesheet" type="text/css" href="${path}/resources/css/common.css">
 	<style type="text/css">
@@ -45,7 +45,7 @@
 			height: 80px;
 			/* img태그를 사용하면 글자처럼 취급이 되서 이미지 삽입시 자라를 자동으로 잡아주는데 */
 			/* img태그가 아니라 background url 사용시 이미지 자리를 안잡아주므로 block에 witdh height 잡아주고 이미지 넣어줌 */
-			background: url(../../img/tumbland_logo_transparent_crop.png) 100% 50% no-repeat;
+		
 			background-size: 300px 80px;
 			margin: 0 210px;
 			/*margin: auto;*/
@@ -182,12 +182,12 @@
 		}
 		.btn-primary {
 			color: white;
-			background-color: #FFADA6;
+			background-color: #3885ca;
 		}
 		
 		/*.btn_agree {
 			color: white;
-			background-color: #FFADA6;
+			background-color: #3885ca;
 		}*/
 
 		#footer {
@@ -437,15 +437,10 @@
 				</ul>
 
 				<div id="address">
-					<span>
-						<a href="../include/header.html">
-							<img id="addr_logo" src="../../img/tumbland_logo_transparent_crop.png">
-						</a>
-					</span>
-					&nbsp;
+					
 					<span>Copyright</span>
 					<span>ⓒ</span>
-					<span><strong><a href="#">TUMBLAND Corp.</a></strong></span>
+					<span><strong><a href="#">First Corp.</a></strong></span>
 					<span>All Rights Reserved.</span>
 				</div>
 			</div>

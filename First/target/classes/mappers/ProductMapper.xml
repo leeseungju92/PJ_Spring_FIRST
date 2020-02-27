@@ -9,8 +9,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="bestPdtList" resultType="ProductDTO">
 		SELECT *
 		FROM (SELECT rownum rnum , best.*
-			  FROM(SELECT * FROM tbl_news			  	   
-			  	   )best
+			  FROM(SELECT * FROM tbl_news order by regdate desc			  	   
+			  	   )best 
 			   )
 		WHERE rnum between 1 and 8
 	</select>

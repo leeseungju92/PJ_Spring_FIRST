@@ -172,7 +172,7 @@
 			margin: 19px 8px 0 0;
 		}
 		.span_only {
-			color: #FF8C94;
+			color: #3885ca;
 			font-size: 12px;
 			font-weight: 400;
 		}
@@ -257,8 +257,8 @@
 		}
 		.btn_agree {
 			color: #fff;
-			border: 1px solid #FFADA6;
-			background-color: #FFADA6;
+			border: 1px solid #3885ca;
+			background-color: #3885ca;
 		}
 		.group_join {
 			margin: 20px 0px 65px;
@@ -291,7 +291,7 @@
 			border-left: 1px solid #dadada;
 		}
 		#footer > ul > li a:hover {
-			color: #FF8C94;
+			color: #3885ca;
 			text-decoration: underline;
 		}
 		#footer ul li:first-child {
@@ -317,7 +317,7 @@
 			font-weight: bold;
 		}
 		#address a:hover {
-			color: #FF8C94;
+			color: #3885ca;
 		}
 	</style>
 </head>
@@ -326,7 +326,7 @@
 		<header>
 			<div id="header">
 				<h1 class="naver_logo">
-					<a href="../include/header.html" class="n_logo"><!-- <img src="${path}/resources/img/tumbland_logo_transparent_crop.png"> --></a>
+					
 				</h1>
 				<div class="lang">
 					<select class="langselect"> <!-- select태그 크롬:삼각형 다른웹브라우저 다른걸로 나옴 -->
@@ -446,15 +446,10 @@
 				</ul>
 
 				<div id="address">
-					<span>
-						<a href="../include/header.html">
-							<img id="addr_logo" src="${path}/resources/img/tumbland_logo_transparent_crop.png">
-						</a>
-					</span>
-					&nbsp;
+					
 					<span>Copyright</span>
 					<span>ⓒ</span>
-					<span><strong><a href="#">TUMBLAND Corp.</a></strong></span>
+					<span><strong><a href="#">First Corp.</a></strong></span>
 					<span>All Rights Reserved.</span>
 				</div>
 			</div>
