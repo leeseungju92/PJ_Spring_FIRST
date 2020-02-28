@@ -538,7 +538,7 @@ div.content_wrap_main {
 						</div>
 					</div>
 				</div>
-			</div>
+			</div>								
 				<div class="header_content_member">
 					<div class="header_content_dropdown_wrap">
 						<div class="header_content_dropdown_group">
@@ -548,13 +548,17 @@ div.content_wrap_main {
 								<ul class="header_dropdown_menu">
 									<li><a href="#">구매내역</a></li>
 									<li><a href="#">위시리스트</a></li>
-									<li><a href="#">회원정보수정</a></li>
+									<c:if test="${not empty userid}">
+									<li><a href="${path}/member/update">회원정보수정</a></li>
+									<li><a href="${path}/member/pwupdate">비번수정</a></li>
+									</c:if>
 									<li><a href="#">고객센터</a></li>
 									<li><a href="../include/deleteconstract.html">회원탈퇴</a></li>
 								</ul>
 							</div>
 						</div>
 					</div>
+					
 					<div>
 						<div class="header_content_member_cart">
 							<a href="#"><i class="fas fa-shopping-cart"></i></a>

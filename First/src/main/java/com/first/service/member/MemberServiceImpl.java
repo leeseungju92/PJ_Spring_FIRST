@@ -29,4 +29,10 @@ public class MemberServiceImpl implements MemberService{
 		return mDao.memInsert(mDto);
 	}
 
+	@Override
+	public MemberDTO userView(String id) {
+		
+		return mDao.userView(id);
+	}
+
 }

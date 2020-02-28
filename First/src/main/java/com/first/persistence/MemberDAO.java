@@ -7,4 +7,5 @@ public interface MemberDAO {
 	public int memInsert(MemberDTO mDto);
 	public int getKey(String id , String key);
 	public int alterKey(String id, String key);
+	public MemberDTO userView(String id);
 }

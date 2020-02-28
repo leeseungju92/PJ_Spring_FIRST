@@ -1,6 +1,7 @@
 package com.first.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -62,6 +63,9 @@ public class MemberController {
 	public String viewJoin(@ModelAttribute("memberDTO") MemberDTO mDto, @RequestParam(value="flag", defaultValue="0") String flag, Model model) {
 		log.info(mDto.toString());
 		model.addAttribute("flag", flag);
+		if(!flag.equals("1")) {
+			return "member/constract";
+		}
 		return "member/join";
 		
 		
@@ -127,5 +131,20 @@ public class MemberController {
 		return flag;
 	}
 	
-	
+	@GetMapping("/update")	
+	public String memUpdate(Model model, HttpSession session){
+		log.info(">>>>>>>>GET: Member UPdate page");
+		
+		String id = (String)session.getAttribute("userid");
+		
+		
+		if(id==null) {
+			return "redirect:/";
+		}
+		
+//		MemberDTO mdto = mService.userView(id);
+		model.addAttribute("user", mService.userView(id));
+		
+		return "member/join";
+	}
 }

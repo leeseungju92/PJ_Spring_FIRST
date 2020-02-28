@@ -36,7 +36,7 @@ public class LoginServiceImpl implements LoginService{
 		if(loginDto==null) {
 			result = 0;
 			return result;
-		}
+		}		
 		if(!(loginDto.getUseyn().equals("y"))) {
 			result = 2;
 			return result;

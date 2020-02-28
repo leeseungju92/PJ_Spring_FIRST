@@ -452,9 +452,8 @@
 <script type="text/javascript" src="${path}/resources/js/validation.js"></script>
 <script type="text/javascript">
 	
-	$(function(){
-		
-		if('${user}' !=''){
+	$(function(){		
+		if("${user}' !=''){
 			$('#btn_join').text('수정하기');
 			$('.join_row:eq(1)').css('display','none');
 			$('.join_row:eq(2)').css('display','none');
@@ -500,16 +499,11 @@
 
 			// 2.유효성 체크 하기
 			var result = joinValidate.checkPw(pw, rpw);
-			
-			
-			
 			if(result.code == 0 || result.code == 10 || result.code == 6) {
 				pwFlag = true;
 			} else {
 				pwFlag = false;
 			}
-			
-			
 			if(result.code == 10) {
 				checkArr[1] = true;
 				$('.join_info_box_content:eq(2)').css('border-bottom', '2px solid #3885CA');

@@ -4,9 +4,11 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.first.domain.MemberDTO;
 import com.first.service.login.LoginService;
@@ -15,12 +17,12 @@ import lombok.extern.slf4j.Slf4j;
 
 @RequestMapping("/login")
 @Slf4j
-@Controller
+@RestController
 public class LoginController {
 	@Autowired
 	LoginService lService;
 	
-	@ResponseBody
+
 	@PostMapping("/in")
 	public Integer logIn(MemberDTO mDto, HttpSession session) {
 		log.info(">>>>>>>>>>POST : LOGIN/ LOGIN ACTION");
@@ -30,10 +32,12 @@ public class LoginController {
 		return result;
 	}
 	
-	@ResponseBody
+
 	@PostMapping("/out")
 	public void logOut(HttpSession session) {
 		log.info(">>>>>>>>>>POST : LOGOUT/ LOGOUT ACTION");
 		lService.logout(session);
 	}
+	
+	
 }

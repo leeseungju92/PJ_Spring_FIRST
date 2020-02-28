@@ -5,4 +5,6 @@ import com.first.domain.MemberDTO;
 public interface MemberService {
 	public int idOverlap(String id);
 	public int memInsert(MemberDTO mDto);
+	
+	public MemberDTO userView(String id);
 }
