@@ -29,4 +29,11 @@ public class LoginController {
 		log.info("결과는~~~~~"+ result);
 		return result;
 	}
+	
+	@ResponseBody
+	@PostMapping("/out")
+	public void logOut(HttpSession session) {
+		log.info(">>>>>>>>>>POST : LOGOUT/ LOGOUT ACTION");
+		lService.logout(session);
+	}
 }

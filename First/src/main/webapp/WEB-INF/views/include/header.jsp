@@ -562,11 +562,12 @@ div.content_wrap_main {
 					</div>
 					<div>
 						<c:choose>
-							<c:when test="${empty sessionScope.userid}">
+							<c:when test="${empty userid}">
 								<button type="button" class="btn btn-basic login_open">로그인</button>
 								<button type="button" id="header_btn_join" class="btn btn-primary">회원가입</button>
 							</c:when>
 							<c:otherwise>
+								<div><span>${userid}(${name})</span></div>
 								<button type="button" class="btn btn-basic" id="header_btn_logout">로그아웃</button>
 							</c:otherwise>
 						</c:choose>
@@ -680,7 +681,22 @@ div.content_wrap_main {
 			});
 		}
 	});
-
+	$(document).on('click', '#header_btn_logout', function(){
+		$.ajax({
+			url:'${path}/login/out',
+			type:'POST',
+			success:function(){
+				console.log('Logout Success:)');
+				location.reload();
+			},
+			error: function(){
+				alert('system erorr:/');
+			}
+		});
+	});
+	$(document).on('click', '#header_btn_join', function(){
+		location.href="${path}/member/constract";
+	});
 	
 </script>
 </html>
