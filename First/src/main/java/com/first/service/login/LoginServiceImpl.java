@@ -37,10 +37,14 @@ public class LoginServiceImpl implements LoginService{
 			result = 0;
 			return result;
 		}		
-		if(!(loginDto.getUseyn().equals("y"))) {
+		if(!(loginDto.getUseyn().equals("y"))){
 			result = 2;
 			return result;
-		}	
+		}
+		if(loginDto.getUseyn().equals("d")){
+			result = 3;
+			return result;
+		}
 		if(loginDto != null) {
 			if(passwordEncoder.matches(mDto.getPw(), loginDto.getPw())) {
 				result = 1;

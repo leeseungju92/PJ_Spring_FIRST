@@ -44,11 +44,11 @@ button.btn{
 			border-color: #2f3138;
 		}
 		button.btn-primary{
-			background-color: #3885CA;			
+			background-color: #f0f0f0;			
 			color: white;			
 		}
 		button.btn-primary:hover{
-			background-color: #0f4c81;
+			background-color: #f0f0f0;
 			border-color: transparent;
 		}
 		button.btn-support{

@@ -64,6 +64,10 @@ var joinValidate = {
 			code: 7,
 			desc : '현재비밀번호와 다르게 입력해주세요.'
 		},
+		success_nowpw:{
+			code: 100,
+			desc: '확인되었습니다.'
+		},
 		// name
 		success_name : {
 			code: 0,
@@ -146,7 +150,7 @@ var joinValidate = {
 			return this.resultCode.success_id;
 		}
 	},
-	checkPw : function(pw, rpw) {
+	checkPw : function(nowpw,pw, rpw) {
 		var regEmpty = /\s/g; // 공백문자
 		var regPw = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&_*-]).{8,}$/;
 		var regHangle = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
@@ -161,7 +165,9 @@ var joinValidate = {
 			return this.resultCode.hangle_pw;
 		} else if(!pw.match(regPw)) { // 5.유효한 비밀번호 체크
 			return this.resultCode.invalid_pw;
-		} else if(rpw != '' || rpw.length != 0) { // 6.비밀번호재확인 값이 있으면!
+		}else if(pw==nowpw){
+			return this.resultCode.equal_pw;
+		}else if(rpw != '' || rpw.length != 0) { // 6.비밀번호재확인 값이 있으면!
 			if(pw == rpw) {
 				return this.resultCode.equal_success_pw;
 			} else {
@@ -243,7 +249,21 @@ var joinValidate = {
 		} else {
 			return this.resultCode.success_addr;
 		}
+	},
+	checkNowpw : function(pw){
+		var regEmpty = /\s/g; // 공백문자
+		
+		if(pw == '' || pw.length == 0) { // 1.값이 있는지 체크
+			return this.resultCode.empty_val;
+		} else if(pw.match(regEmpty)) { // 2.공백값이 있는지 체크
+			return this.resultCode.space_length_val;
+		} else if(pwCheck(pw)){
+			return this.resultCode.other_pw;
+		} else{
+			return this.resultCode.success_nowpw;
+		}
 	}
+	
 }
 function idCheck(id){
 	var return_val = true;
@@ -261,6 +281,27 @@ function idCheck(id){
 		},
 		error: function(){
 			alert('syserr');
+		}
+	});
+	return return_val;
+}
+function pwCheck(pw){
+	var return_val = true;
+	
+	$.ajax({
+		type: 'POST',
+		url: 'pwCheck?pw='+pw,
+		async:false,
+		success: function(data){
+			console.log(data);
+			if(data==1){
+					return_val = false;
+				} else{
+					return_val = true;
+				}
+		},
+		error: function(){
+			
 		}
 	});
 	return return_val;

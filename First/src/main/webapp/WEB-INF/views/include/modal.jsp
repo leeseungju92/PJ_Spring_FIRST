@@ -21,7 +21,7 @@
 		.include_modal_content{			
 			position: relative;
 			width: 420px;
-			
+			max-height: 400px;
 			padding: 60px 70px;
 			background-color: white;
 			border: 1px solid #e5e5e5;
@@ -43,7 +43,7 @@
 			position: relative;
 			
 			width: 100%;
-			height: 100%;
+			
 		}
 		h1{margin:0; padding: 0;
 			color:#3885ca;
@@ -88,11 +88,12 @@
 					<i class="fas fa-times"></i>
 				</button>
 			</div>
-			<h1 id="include_kakaoServiceLogo"style="margin: 0 0 30px">
-				<div id="modal_msg_main_txt"class="include_ir_wa"></div>				
-			</h1>		
+			
+			<div id="modal_msg_main_txt"class="include_ir_wa"></div>				
+					
 			<div id="modal_msg_sub_txt"></div>									
 				<div class="include_wrap_btn">					
+					<button id="modal_msg_cancle" class="include_btn_g" type="button" tabindex="3">취소</button>
 					<button id="modal_msg_yes" class="include_btn_g" type="button" tabindex="3">확인</button>					
 				</div>																			
 		</div>
@@ -109,19 +110,31 @@
 			var join_sub_txt = email +'으로 인증메일을 보냈습니다. 인증하세요';
 			var auth_main_txt = id+'님 이메일 인증되셨습니다.';
 			var auth_sub_txt = '지금부터 사이트 활동이 가능합니다. 감사합니다.';
-			
+			var dropResult_main_txt = id +'님 탈퇴되셨습니다.';
+			var dropResult_sub_txt = '그동안 이용해주셔서 감사합니다.';
 			if(key=='join'){
 				$('#modal_msg_main_txt').text(join_main_txt);
 				$('#modal_msg_sub_txt').text(join_sub_txt);
-				$('#modal_msg_cancle').css('display','none');
+				$('#modal_msg_yes').css('display','none');
+				$('#modal_msg_cancle').text('확  인');
 				$('.include_modal_wrap').css('display','flex');
 			}else if(key=='auth'){
 				$('#modal_msg_main_txt').text(auth_main_txt);
 				$('#modal_msg_sub_txt').text(auth_sub_txt);
-				$('#modal_msg_cancle').css('display','none');
+				$('#modal_msg_yes').css('display','none');
+				$('#modal_msg_cancle').text('확  인');
 				$('.include_modal_wrap').css('display','flex');				
+			}else if(key=='dropResult'){
+				$('#modal_msg_main_txt').text(dropResult_main_txt);
+				$('#modal_msg_sub_txt').text(dropResult_sub_txt);
+				$('#modal_msg_yes').css('display','none');
+				$('#modal_msg_cancle').text('확  인');
+				$('.include_modal_wrap').css('display','flex');
 			}
 			$('#modal_msg_yes').on('click', function(){
+				$('.include_modal_wrap').css('display', 'none');	
+			});
+			$('#modal_msg_cancle').on('click', function(){
 				$('.include_modal_wrap').css('display', 'none');	
 			});
 			$('.include_close_btn').on('click', function(){

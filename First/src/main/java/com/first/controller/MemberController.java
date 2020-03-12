@@ -142,9 +142,61 @@ public class MemberController {
 			return "redirect:/";
 		}
 		
-//		MemberDTO mdto = mService.userView(id);
+
 		model.addAttribute("user", mService.userView(id));
 		
 		return "member/join";
 	}
-}
+	@GetMapping("/pwupdate")	
+	public String pwUpdate(HttpSession session){
+		log.info(">>>>>>>>GET: Member pwUPdate page");
+		
+		String id = (String)session.getAttribute("userid");
+		
+		
+		if(id==null) {
+			return "redirect:/";
+		}		
+		
+		return "member/pwupdate";
+	}
+	@PostMapping("/pwupdate")	
+	public String pwUpdate(HttpSession session, MemberDTO mDto){
+		log.info(">>>>>>>>POST: Member pwUPdate page");		
+		log.info("수정빔빏	ㅓㄴ호 "+mDto.getPw());
+		String encPw= passwordEncoder.encode(mDto.getPw());
+		mDto.setPw(encPw);
+		String id = (String)session.getAttribute("userid");
+		mDto.setId(id);
+		log.info(mDto.toString());
+		mService.pwUpdate(mDto);
+		return "redirect:/";		
+	}
+	@ResponseBody
+	@PostMapping("/pwCheck")
+	public Integer pwCheck(String pw, HttpSession session) {
+		log.info(">>>>>>>> POST pw check");
+		String id= (String)session.getAttribute("userid");
+		
+		return mService.pwCheck(id,pw);
+	}
+	@GetMapping("/drop")
+	public String drop() {
+		
+		return "member/drop";
+	}
+	
+	@GetMapping("/mypage") 
+	public String mypage() {
+		return "member/mypage";
+	}
+	@GetMapping("/dropAction")
+	public String memDrop(HttpSession session, RedirectAttributes rttr) {
+		String id =(String)session.getAttribute("userid");
+		
+		rttr.addFlashAttribute("id", id);
+		rttr.addFlashAttribute("key", "dropResult");
+		mService.memDrop(session, id);
+		return "redirect:/";
+	}
+}	

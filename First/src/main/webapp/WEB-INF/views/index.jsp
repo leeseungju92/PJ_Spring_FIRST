@@ -18,7 +18,7 @@ div.content_main {
 	height: 350px; /*임시로 고정*/
 	border: 1px solid red;
 }
-
+ 
 div.content_main_text {
 	width: 33.33%;
 	margin: 0 15px 0 0;
