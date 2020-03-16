@@ -136,28 +136,13 @@ public class MemberController {
 		log.info(">>>>>>>>GET: Member UPdate page");
 		
 		String id = (String)session.getAttribute("userid");
-		
-		
-		if(id==null) {
-			return "redirect:/";
-		}
-		
-
 		model.addAttribute("user", mService.userView(id));
 		
 		return "member/join";
 	}
 	@GetMapping("/pwupdate")	
-	public String pwUpdate(HttpSession session){
+	public String pwUpdate(){
 		log.info(">>>>>>>>GET: Member pwUPdate page");
-		
-		String id = (String)session.getAttribute("userid");
-		
-		
-		if(id==null) {
-			return "redirect:/";
-		}		
-		
 		return "member/pwupdate";
 	}
 	@PostMapping("/pwupdate")	
@@ -187,7 +172,7 @@ public class MemberController {
 	}
 	
 	@GetMapping("/mypage") 
-	public String mypage() {
+	public String mypage() {		
 		return "member/mypage";
 	}
 	@GetMapping("/dropAction")

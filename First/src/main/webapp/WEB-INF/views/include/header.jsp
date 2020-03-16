@@ -548,10 +548,10 @@ div.content_wrap_main {
 								<ul class="header_dropdown_menu">
 									<li><a href="#">구매내역</a></li>
 									<li><a href="#">위시리스트</a></li>
-									<c:if test="${not empty userid}">
-									<li><a href="${path}/member/mypage">내 정보</a></li>
+						
+									<li><a id="mypage" href="${path}/member/mypage">내 정보</a></li>
 									
-									</c:if>
+						
 									<li><a href="#">고객센터</a></li>
 									
 								</ul>
@@ -595,8 +595,15 @@ div.content_wrap_main {
 	//jquery 이벤트 문법 (클릭, 포커스, 블러등)
 	//$(document).on('이벤트','선택자'function())
 	$(document).ready(function(){		
+		var message = '${message}';
+		console.log(message);
+		if(message=='nologin'){
+			$('.modal_wrap').css('display', 'flex');
+			$('#login_id').focus();
+			$('.err_content').css('display','block')
+							 .text('로그인이 필요한 기능입니다.');
+		}
 		
-
 		$(window).scroll(function(){
 			if(document.body.scrollTop > 80 || document.documentElement.scrollTop >80){
 				$('.top_btn').fadeIn().css("display","flex");
