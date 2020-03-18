@@ -70,4 +70,19 @@ public class MemberServiceImpl implements MemberService{
 		}
 	}
 
+	@Override
+	public void memUpdate(MemberDTO mDto, HttpSession session) {
+		// TODO Auto-generated method stub
+		int result = mDao.memUpdate(mDto);
+
+		if(result > 0) {
+			//세션에 로그인유저 정보를 수정된 정보로 변경			
+			session.removeAttribute("name");// 세션에 담겨있는 네임값을(로그인 정보는 항상 세션에 넣기로 했다.)
+			session.setAttribute("name", mDto.getName());// 이 네임으로 바꿔주라
+		}
+
+
+		//return mDao.memUpdate(mDto); 수정에 성공했나 볼려고 하는것이니까 지워도 된다.
+	}
+
 }

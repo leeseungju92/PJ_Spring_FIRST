@@ -11,4 +11,5 @@ public interface MemberDAO {
 	public String pwCheck(String id);
 	public void pwUpdate(MemberDTO mDto);
 	public int memDrop(String id);
+	public int memUpdate(MemberDTO mDto);
 }

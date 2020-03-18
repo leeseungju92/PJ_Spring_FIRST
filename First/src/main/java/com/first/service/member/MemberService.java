@@ -11,5 +11,6 @@ public interface MemberService {
 	public int pwCheck(String id, String pw);
 	public void pwUpdate(MemberDTO mDto);
 	public void memDrop(HttpSession session, String id);
+	public void memUpdate(MemberDTO mDto, HttpSession session);
 	
 }
