@@ -6,6 +6,8 @@ import com.first.domain.BoardDTO;
 
 
 public interface BoardService {
-	public List<BoardDTO> boardList();
+	public List<BoardDTO> boardList(int start, int end);
+
+	public int countArticle();
 	
 }

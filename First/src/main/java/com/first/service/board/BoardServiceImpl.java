@@ -1,7 +1,8 @@
 package com.first.service.board;
 
+import java.util.HashMap;
 import java.util.List;
-
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,13 +25,16 @@ public class BoardServiceImpl implements BoardService{
 		bDao = sqlSession.getMapper(BoardDAO.class);
 	}
 	@Override
-	public List<BoardDTO> boardList() {
-		List<BoardDTO> list=bDao.boardList();
-		for (BoardDTO boardDTO : list) {
-			log.info(boardDTO.toString());
-			
-		}
-		return bDao.boardList();
+	public List<BoardDTO> boardList(int start, int end) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("start", start);
+		map.put("end", end);
+		return bDao.boardList(map);
+	}
+	@Override
+	public int countArticle() {
+		// TODO Auto-generated method stub
+		return bDao.countArticle();
 	}
 
 }
