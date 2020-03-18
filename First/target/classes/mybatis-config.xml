@@ -6,5 +6,6 @@
 	<typeAliases>
 		<typeAlias type="com.first.domain.ProductDTO" alias="ProductDTO"/>
 		<typeAlias type="com.first.domain.MemberDTO" alias="MemberDTO"/>
+		<typeAlias type="com.first.domain.BoardDTO" alias="BoardDTO"/>
 	</typeAliases>
 </configuration>

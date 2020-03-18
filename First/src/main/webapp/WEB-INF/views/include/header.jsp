@@ -532,7 +532,7 @@ div.content_wrap_main {
 							<div class="arrow"></div>
 							<ul class="header_dropdown_menu">
 								<li><a href="#">구매후기</a></li>
-								<li><a href="#">자유게시판</a></li>
+								<li><a href="${path}/board/list">자유게시판</a></li>
 								<li><a href="#">질문게시판</a></li>
 							</ul>
 						</div>

@@ -156,11 +156,31 @@
 		.board_name{
 			font-size: 27PX;
 		}
+		.twincle_eff{
+			animation-name: twinkle;
+			animation-duration: 1.2s;
+			animation-iteration-count: infinite;
+		}
+		@keyframes twinkle {
+			0% {opacity:0;}
+			100%{opacity:1;}
+		}
+		.new_color{
+			border: 1px solid tomato;
+			color: tomato;
+			
+			margin-left:7px;
+			font-weight:bold;
+			font-size:12px;
+			
+		}
 	</style>
 
 </head>
 
 <body>
+	<jsp:useBean id="now" class="java.util.Date"/>
+	<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today"/>
 	<div class="content">
 		
 		<div class="write">
@@ -185,190 +205,52 @@
 			</div>
 		</div>
 		<div class="panel">
-			<ul>
-
+			<ul>				
+				<c:forEach items="${map.list}" var="list">
 				
-				<li class="list_group_item flex jcsb">
+				<fmt:formatDate value="${list.updatedate}" pattern="yyyy-MM-dd" var="regdate"/>
+				<li class="list_group_item flex jcsb">				
 					<div class="list_title_wrapper">
 						<div class="flex">
-							<div class="list_title_num">#000001</div>
-							<div class="list_title_category">사는얘기</div>
+							<div class="list_title_num"><a href="#">${list.bno}</a></div>
+							<div class="list_title_category"><a href="#">${list.type}</a></div>
 						</div>						
-						<div class="list_title_topic">디자인이 너무 싫어요</div>
-					</div>
-					
+						<div class="list_title_topic">
+							<a href="#">${list.title}</a>
+							<c:if test="${today == regdate}">
+								<span class="new_color twincle_eff">N</span>
+							</c:if>
+						</div>
+					</div>					
 					<div class="list_info flex">
 						<div class="list_title_icon">
-							<i class="far fa-comment">20</i>
-							<i class="far fa-thumbs-up">18</i>
-							<i class="far fa-eye">5k</i><i class="fas fa-file"></i>
+							<i class="far fa-comment">${list.replycnt}</i>
+							<i class="far fa-thumbs-up">${list.goodcnt}</i>
+							<i class="far fa-eye">${list.viewcnt}</i>
+							<i class="fas fa-file"></i>
 						</div>
 
 						<div class="list_user_info flex">
 							<img src="${path}/resources/img/FIRST.png" style="width: 30px;">
 							<div>
-								<div>초롱이</div>
-								<div>2020.03.17</div>
-							</div>
-						</div>
-					</div>
-					
-				</li>
-				<li class="list_group_item flex jcsb">
-					<div class="list_title_wrapper">
-						<div class="flex">
-							<div class="list_title_num">#000001</div>
-							<div class="list_title_category">사는얘기</div>
-						</div>						
-						<div class="list_title_topic">디자인이 너무 싫어요</div>
-					</div>
-					
-					<div class="list_info flex">
-						<div class="list_title_icon">
-							<i class="far fa-comment">20</i>
-							<i class="far fa-thumbs-up">18</i>
-							<i class="far fa-eye">5k</i><i class="fas fa-file"></i>
-						</div>
-
-						<div class="list_user_info flex">
-							<img src="${path}/resources/img/FIRST.png" style="width: 30px;">
-							<div>
-								<div>초롱이</div>
-								<div>2020.03.17</div>
-							</div>
-						</div>
-					</div>
-					
-				</li>
-				<li class="list_group_item flex jcsb">
-					<div class="list_title_wrapper">
-						<div class="flex">
-							<div class="list_title_num">#000001</div>
-							<div class="list_title_category">사는얘기</div>
-						</div>						
-						<div class="list_title_topic">디자인이 너무 싫어요</div>
-					</div>
-					
-					<div class="list_info flex">
-						<div class="list_title_icon">
-							<i class="far fa-comment">20</i>
-							<i class="far fa-thumbs-up">18</i>
-							<i class="far fa-eye">5k</i><i class="fas fa-file"></i>
-						</div>
-
-						<div class="list_user_info flex">
-							<img src="${path}/resources/img/FIRST.png" style="width: 30px;">
-							<div>
-								<div>초롱이</div>
-								<div>2020.03.17</div>
-							</div>
-						</div>
-					</div>
-					
-				</li>
-				<li class="list_group_item flex jcsb">
-					<div class="list_title_wrapper">
-						<div class="flex">
-							<div class="list_title_num">#000001</div>
-							<div class="list_title_category">사는얘기</div>
-						</div>						
-						<div class="list_title_topic">디자인이 너무 싫어요</div>
-					</div>
-					
-					<div class="list_info flex">
-						<div class="list_title_icon">
-							<i class="far fa-comment">20</i>
-							<i class="far fa-thumbs-up">18</i>
-							<i class="far fa-eye">5k</i><i class="fas fa-file"></i>
-						</div>
-
-						<div class="list_user_info flex">
-							<img src="${path}/resources/img/FIRST.png" style="width: 30px;">
-							<div>
-								<div>초롱이</div>
-								<div>2020.03.17</div>
-							</div>
-						</div>
-					</div>
-					
-				</li>
-				<li class="list_group_item flex jcsb">
-					<div class="list_title_wrapper">
-						<div class="flex">
-							<div class="list_title_num">#000001</div>
-							<div class="list_title_category">사는얘기</div>
-						</div>						
-						<div class="list_title_topic">디자인이 너무 싫어요</div>
-					</div>
-					
-					<div class="list_info flex">
-						<div class="list_title_icon">
-							<i class="far fa-comment">20</i>
-							<i class="far fa-thumbs-up">18</i>
-							<i class="far fa-eye">5k</i><i class="fas fa-file"></i>
-						</div>
-
-						<div class="list_user_info flex">
-							<img src="${path}/resources/img/FIRST.png" style="width: 30px;">
-							<div>
-								<div>초롱이</div>
-								<div>2020.03.17</div>
-							</div>
-						</div>
-					</div>
-					
-				</li>
-				<li class="list_group_item flex jcsb">
-					<div class="list_title_wrapper">
-						<div class="flex">
-							<div class="list_title_num">#000001</div>
-							<div class="list_title_category">사는얘기</div>
-						</div>						
-						<div class="list_title_topic">디자인이 너무 싫어요</div>
-					</div>
-					
-					<div class="list_info flex">
-						<div class="list_title_icon">
-							<i class="far fa-comment">20</i>
-							<i class="far fa-thumbs-up">18</i>
-							<i class="far fa-eye">5k</i><i class="fas fa-file"></i>
-						</div>
-
-						<div class="list_user_info flex">
-							<img src="${path}/resources/img/FIRST.png" style="width: 30px;">
-							<div>
-								<div>초롱이</div>
-								<div>2020.03.17</div>
-							</div>
-						</div>
-					</div>
-					
-				</li>
-				<li class="list_group_item flex jcsb">
-					<div class="list_title_wrapper">
-						<div class="flex">
-							<div class="list_title_num">#000001</div>
-							<div class="list_title_category">사는얘기</div>
-						</div>						
-						<div class="list_title_topic">디자인이 너무 싫어요</div>
-					</div>
-					
-					<div class="list_info flex">
-						<div class="list_title_icon">
-							<i class="far fa-comment">20</i>
-							<i class="far fa-thumbs-up">18</i>
-							<i class="far fa-eye">5k</i><i class="fas fa-file"></i>
-						</div>
-
-						<div class="list_user_info flex">
-							<img src="${path}/resources/img/FIRST.png" style="width: 30px;">
-							<div>
-								<div>초롱이</div>
-								<div>2020.03.17</div>
+								<div>${list.writer}</div>								
+								<div>
+									<c:choose>
+										<c:when test="${today ==regdate}">
+											<fmt:formatDate value="${list.updatedate}" pattern="HH:mm:ss"/>
+										</c:when>
+										<c:otherwise>
+											<fmt:formatDate value="${list.updatedate}" pattern="yyyy-MM-dd"/>
+										</c:otherwise>
+									</c:choose>
+								</div>
 							</div>
 						</div>
 					</div>					
-				</li>	
+				</li>
+				</c:forEach>
+				
+				
 			</ul>
 		</div>
 		<div class="page">

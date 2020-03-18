@@ -34,10 +34,10 @@ public class IndexServiceImpl implements IndexService{
 		//log.info("@을 사용한 방법:" + pDao.getCount());
 		//log.info("xml을 사용한방법:" + pDao.getCount2());
 		//:베스트상품 5건을 조회해서 View(메인)단에 출력
-//		List<ProductDTO> list=pDao.bestPdtList();
-//		for(ProductDTO productDTO :list) {
-//			log.info(productDTO.toString());
-//		}
+		List<ProductDTO> list=pDao.bestPdtList();
+		for(ProductDTO productDTO :list) {
+			log.info(productDTO.toString());
+		}
 		return pDao.bestPdtList();
 	}
 
