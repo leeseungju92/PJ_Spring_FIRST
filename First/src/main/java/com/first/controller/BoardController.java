@@ -25,10 +25,13 @@ public class BoardController {
 	
 	@GetMapping("/list")
 	public String list(
-			@RequestParam(defaultValue="1") int curPage, 
+			@RequestParam(defaultValue="1") int curPage,
+			@RequestParam(defaultValue="new") String sort_option,
+			@RequestParam(defaultValue="all") String search_option,
+			@RequestParam(defaultValue="") String keyword,
 			Model model){
 		
-		int count = bService.countArticle();
+		int count = bService.countArticle(search_option, keyword);
 		
 		Pager pager = new Pager(count,curPage);
 		int start = pager.getPageBegin();
@@ -37,10 +40,13 @@ public class BoardController {
 		
 		
 		
-		List<BoardDTO> list = bService.boardList(start, end);
+		List<BoardDTO> list = bService.boardList(search_option,keyword,sort_option, start, end);
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("list", list);
 		map.put("count", count);
+		map.put("pager", pager);
+		map.put("sort_option", sort_option);
+		
 		model.addAttribute("map", map);
 		return "board/list";
 	}

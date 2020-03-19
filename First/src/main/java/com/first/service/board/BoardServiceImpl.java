@@ -25,16 +25,22 @@ public class BoardServiceImpl implements BoardService{
 		bDao = sqlSession.getMapper(BoardDAO.class);
 	}
 	@Override
-	public List<BoardDTO> boardList(int start, int end) {
+	public List<BoardDTO> boardList(String search_option,String keyword,String sort_option, int start, int end) {
 		Map<String, Object> map = new HashMap<>();
 		map.put("start", start);
 		map.put("end", end);
+		map.put("sort_option",sort_option);
+		map.put("search_option", search_option);
+		map.put("keyword", "%"+keyword+"%");
 		return bDao.boardList(map);
 	}
 	@Override
-	public int countArticle() {
+	public int countArticle(String search_option, String keyword) {
 		// TODO Auto-generated method stub
-		return bDao.countArticle();
+		Map<String, String> map = new HashMap<>();
+		map.put("search_option", search_option);
+		map.put("keyword", "%"+keyword+"%");
+		return bDao.countArticle(map);
 	}
 
 }

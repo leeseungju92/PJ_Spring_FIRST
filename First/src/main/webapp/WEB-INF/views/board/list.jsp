@@ -129,24 +129,28 @@
 		}
 		.pagination a.active{
 			cursor: default;
-			color: #ffffff;
+			
 		}
 		.pagination a:active{
 			outline: none;
 		}
 		.modal .num{
-			margin-left: 3px;
+			margin-left: 7px;
 			padding: 0;
 			width: 30px;
 			height: 30px;
 			line-height: 30px;
 			border-radius: 100%;
 		}
-		.num.active, .num:active{
-			background-color: #2e9cdf;
+		#check_color{
+		background-color: #3885CA; 
+		}
+		
+		.num:active, .num:active{
+			background-color: #3885ca; 
 			cursor: pointer;
 		}
-		.arrow left{
+		.pagination_arrow left{
 			width: 0;
 			height: 0;
 			border-top: 10px solid transparent;
@@ -174,6 +178,13 @@
 			font-size:12px;
 			
 		}
+		.fa-angle-right .fa-angle-left{
+			font-size:16px;
+			line-height:21px;
+		}	
+		.list_end{
+			margin-right:0px;
+		}	
 	</style>
 
 </head>
@@ -189,19 +200,19 @@
 		</div>					
 		<div class="nav">
 			<div class="header_content_search">
-				<form name="frm_search" action="" method="GET">
+				<form name="frm_search" action="${path}/board/list" method="GET">
 					<div class="header_content_search_group right">
 						<input type="text" placeholder="무엇이든 검색하기" name="keyword" class="header_content_search_input">
-						<button type="button" class="header_content_search_btn"><i class="	fas fa-search"></i></button>
+						<button type="submit" class="header_content_search_btn"><i class="	fas fa-search"></i></button>
 					</div>
-					<ul class="header_content_sort_group ul left">
-							<li class="list"><a href="#">최신순</a></li>
-							<li class="list"><a href="#">추천순</a></li>
-							<li class="list"><a href="#">댓글순</a></li>
-							<li class="list"><a href="#">스크랩순</a></li>
-							<li class="list"><a href="#">조회순</a></li>				
-					</ul>
 				</form>
+					<ul class="header_content_sort_group ul left">
+							<li class="list"><a href="${path}/board/list?sort_option=new&keyword=${map.keyword}" id="sort_new">최신순</a></li>
+							<li class="list"><a href="${path}/board/list?sort_option=good&keyword=${map.keyword}" id="sort_good">추천순</a></li>
+							<li class="list"><a href="${path}/board/list?sort_option=reply&keyword=${map.keyword}" id="sort_reply">댓글순</a></li>							
+							<li class="list list_end"><a href="${path}/board/list?sort_option=cnt&keyword=${map.keyword}" id="sort_cnt">조회순</a></li>				
+					</ul>
+				
 			</div>
 		</div>
 		<div class="panel">
@@ -255,20 +266,43 @@
 		</div>
 		<div class="page">
 			<ul class="pagination">
-				<li><a href="#" class="first">처음페이지</a></li>
-				<li><a href="#" class="arrow left"><<</a></li>
-				<li><a href="#" class="active num">1</a></li>
-				<li><a href="#" class="num">2</a></li>
-				<li><a href="#" class="num">3</a></li>
-				<li><a href="#" class="num">4</a></li>
-				<li><a href="#" class="num">5</a></li>
-				<li><a href="#" class="num">6</a></li>
-				<li><a href="#" class="num">7</a></li>
-				<li><a href="#" class="arrow right">>></a></li>
-				<li><a href="#" class="last">끝 페이지</a></li>
-
+			
+				<c:if test="${map.pager.curBlock>1}">
+					<li><a href="${path}/board/list?curPage=${map.pager.blockBegin-10}&sort_option=${map.sort_option}&keyword=${map.keyword}" class="first page_left"><i class="fas fa-angle-left" style="font-size:14px;"></i></a></li>
+					<li><a href="${path}/board/list?curPage=1&sort_option=${map.sort_option}&keyword=${map.keyword}" class="pagination_arrow page_left">1</a></li>
+					<li><span class="left">...</span></li>
+				</c:if>
+				
+				
+				
+				<c:forEach var="num" begin="${map.pager.blockBegin}" end="${map.pager.blockEnd}">
+				<c:choose>
+					<c:when test="${num == map.pager.curPage}">
+						<li><a href="${path}/board/list?curPage=${num}&sort_option=${map.sort_option}&keyword=${map.keyword}" class="active num no_color" id="check_color">${num}</a></li>	
+					</c:when>
+					<c:otherwise>
+						<li><a href="${path}/board/list?curPage=${num}&sort_option=${map.sort_option}&keyword=${map.keyword}" class="active num">${num}</a></li>	
+					</c:otherwise>			
+				</c:choose>
+				</c:forEach>
+				
+												
+				<c:if test="${map.pager.curBlock < map.pager.totBlock}">
+					<li><span class="left">...</span></li>
+					<li><a href="${path}/board/list?curPage=${map.pager.totPage}&sort_option=${map.sort_option}&keyword=${map.keyword}" class="first page_left">${map.pager.totPage}</a></li>
+					<li><a href="${path}/board/list?curPage=${map.pager.blockEnd + 1}&sort_option=${map.sort_option}&keyword=${map.keyword}" class="pagination_arrow page_left"><i class="fas fa-angle-right" style="line-heigt:31px;"></i></a></li>
+				</c:if>
 			</ul>
 		</div>	
 	</div>	
 </body>
+<script type="text/javascript">
+	$(function(){
+		
+		var sort_option = '${map.sort_option}';
+		$('#sort_'+sort_option).css('background-color', '#3885CA');
+		
+	});
+
+</script>
 </html>

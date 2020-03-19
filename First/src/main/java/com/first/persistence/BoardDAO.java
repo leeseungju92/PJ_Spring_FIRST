@@ -10,5 +10,5 @@ import com.first.domain.BoardDTO;
 public interface BoardDAO {
 	public List<BoardDTO> boardList(@Param("map") Map<String,Object> map);
 
-	public int countArticle();
+	public int countArticle(@Param("map") Map<String, String> map);
 }
