@@ -41,12 +41,21 @@ public class BoardController {
 		
 		
 		List<BoardDTO> list = bService.boardList(search_option,keyword,sort_option, start, end);
+		for (BoardDTO boardDTO : list) {
+			if(!(keyword=="")) {
+				boardDTO.setWriter(boardDTO.getWriter().replaceAll(keyword, "<span id=search_bcc>"+keyword+"</span>"));
+				
+				
+				boardDTO.setTitle(boardDTO.getTitle().replaceAll(keyword, "<span id=search_bcc>"+keyword+"</span>"));
+			}
+		}
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("list", list);
 		map.put("count", count);
 		map.put("pager", pager);
 		map.put("sort_option", sort_option);
-		
+		map.put("search_option",search_option);
+		map.put("keyword",keyword);
 		model.addAttribute("map", map);
 		return "board/list";
 	}

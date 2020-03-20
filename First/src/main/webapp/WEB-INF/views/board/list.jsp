@@ -185,6 +185,14 @@
 		.list_end{
 			margin-right:0px;
 		}	
+		#search_info{
+			display:none;
+			
+		}
+		#search_bcc{
+			background-color: #3885CA;
+		}
+		
 	</style>
 
 </head>
@@ -202,7 +210,7 @@
 			<div class="header_content_search">
 				<form name="frm_search" action="${path}/board/list" method="GET">
 					<div class="header_content_search_group right">
-						<input type="text" placeholder="무엇이든 검색하기" name="keyword" class="header_content_search_input">
+						<input type="text" placeholder="무엇이든 검색하기" name="keyword" class="header_content_search_input" value="${map.keyword}">
 						<button type="submit" class="header_content_search_btn"><i class="	fas fa-search"></i></button>
 					</div>
 				</form>
@@ -213,8 +221,9 @@
 							<li class="list list_end"><a href="${path}/board/list?sort_option=cnt&keyword=${map.keyword}" id="sort_cnt">조회순</a></li>				
 					</ul>
 				
-			</div>
+			</div>			
 		</div>
+		<span id="search_info">"${map.keyword}"로 검색하신결과 "${map.count}" 건<button type="button" id="search_clear">검색 초기화</button></span>
 		<div class="panel">
 			<ul>				
 				<c:forEach items="${map.list}" var="list">
@@ -297,11 +306,19 @@
 	</div>	
 </body>
 <script type="text/javascript">
-	$(function(){
+	$(function(){		
+		$('#sort_'+'${map.sort_option}').css('background-color', '#3885CA');
 		
-		var sort_option = '${map.sort_option}';
-		$('#sort_'+sort_option).css('background-color', '#3885CA');
+		if(!('${map.keyword}'=='')){
+			$('#search_info').css('display','block');
+			
+		}else{
+			$('#search_info').css('display','none');
+		}
 		
+		$('#search_clear').click(function(){
+			location.href='${path}/board/list';
+		});
 	});
 
 </script>
