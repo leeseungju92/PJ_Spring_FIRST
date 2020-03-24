@@ -64,7 +64,7 @@ public class BoardServiceImpl implements BoardService{
 			update_time=(long) session.getAttribute("update_time_"+bno);
 		}
 		long current_time = System.currentTimeMillis();
-		if(current_time - update_time > 5000) {
+		if(current_time - update_time > 24*60*60*1000) {
 			bDao.increaseViewcnt(bno);
 			session.setAttribute("update_time_"+bno, current_time);
 		}

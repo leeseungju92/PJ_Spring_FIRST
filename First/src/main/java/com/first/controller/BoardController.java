@@ -68,19 +68,28 @@ public class BoardController {
 	
 	@GetMapping("/viewList/{bno}")
 	public String viewList(HttpSession session,@PathVariable(value="bno") int bno, Model model) {		
-		log.info(">>>>>Get Boardview");
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		bService.increaseViewcnt(bno,session);
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("bDto", bService.viewList(bno));
 		
 		model.addAttribute("map", map);
+		model.addAttribute("key", "dropBoard");
 		return "board/viewList";
 	}
-	@PostMapping("/drop")
-	public String drop(HttpServletRequest request) {
-		int bno=Integer.parseInt(request.getParameter("bno"));
+	@GetMapping("/drop")
+	public String drop(int bno) {
+		
 		bService.drop(bno);
-		return "board/list";
+		return "redirect:/board/list";
 	}
 	
 }

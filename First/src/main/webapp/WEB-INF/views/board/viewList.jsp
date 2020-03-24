@@ -131,82 +131,12 @@
 	max-height: 800px;
 }
 
-.modal_wrap_delete_viewList {
-	position: fixed;
-	z-index: 1000;
-	background-color: rgba(0, 0, 0, 0.4);
-	overflow: auto;
-	width: 100%;
-	height: 100%;
-	display: none; /* 이줄포함 밑 두줄 모달창 가운데로 오게 해준다.*/
-	justify-content: center;
-	align-items: center;
-}
-
-.modal_content {
-	position: relative;
-	width: 420px;
-	height: 458px;
-	padding: 60px 70px;
-	background-color: white;
-	border: 1px solid #e5e5e5;
-	font-size: 16px;
-	vertical-align: top;
-	box-sizing: border-box;
-	text-align: left;
-}
-
-
-.ir_wa {
-	
-	display: block;
-	position: relative;
-	width: 100%;
-	height: 100%;
-}
-
-h1 {
-	margin: 0;
-	padding: 0;
-	color: #3885ca;
-	font-size: 28px;
-	font-weight: bold;
-}
-
-_end {
-	margin: 0;
-}
 </style>
 
 </head>
 
 <body>
-
-	<div class="modal_wrap_delete_viewList">
-
-		<div class="modal_content">
-			<div class="header_fix_btn">
-				<button class="close_btn" id="delete_modal_close" type="button">
-					<i class="fas fa-times"></i>
-				</button>
-			</div>
-			<h1 id="kakaoServiceLogo" style="margin: 0 0 30px">
-				<span class="ir_wa">게시글 삭제</span>
-
-			</h1>
-			<form:form id="frm_delete_viewList" action="${path}/board/drop" atuocomplete="on">	
-			<input name="bno" type="text" id="bno" class="bno" placeholder=""  value="${map.bDto.bno}" style="display:none;" >
-
-			<div class="wrap_btn">
-				<button class="btn_g" id="btn_drop_viewList" type="submit" tabindex="3">삭제</button>
-			</div>
-			</form:form>
-		</div>
-	</div>
-	
-	
-	
-	
+	<%@ include file ="../include/modal.jsp" %>	
 	<div class="content">
 		<div class="write">
 			<div class="board_name left">상세 게시글</div>
@@ -257,7 +187,7 @@ _end {
 					
 						<ul class="header_content_sort_group ul left">
 							<li class="list"><a
-								href="http://localhost:8081/first/board/list"
+								href="${header.referer}"
 								class="btn-primary">목록</a></li>
 							<li class="list"><button class="btn-primary">답변</button></li>
 						</ul>
@@ -322,16 +252,15 @@ _end {
 </body>
 <script type="text/javascript">
 $(function(){
-	
-	
-	$('#delete_modal_close').click(function(){
-		$('.modal_wrap_delete_viewList').css('display','none');
+	$('#btn_delete_viewList').click(function(){		
+		$('.include_modal_wrap').css('display','flex');
+	});
+	$('#modal_msg_yes').on('click', function(){
+		location.href='${path}/board/drop?bno=${map.bDto.bno}';
 	});
 	
-	$('#btn_delete_viewList').click(function(){
-		$('.modal_wrap_delete_viewList').css('display','flex');
-	});
-	$('#btn_drop_viewList').click(function(){
+	
+	$('#modal_msg_yes').click(function(){
 		$('#frm_delete_viewList').submit();	
 	});
 	

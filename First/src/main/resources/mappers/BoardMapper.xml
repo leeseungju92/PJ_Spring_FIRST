@@ -60,10 +60,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT * from tbl_board
 		WHERE bno = #{param1}
 	</select>
-	<delete id="drop">
-		DELETE FROM tbl_board
+	<update id="drop">
+		UPDATE tbl_board
+     	SET show = 'n'
      	WHERE bno =#{param1} 
-	</delete>
+	</update>
 	<update id="increaseViewcnt">
 		UPDATE tbl_board
 		SET viewcnt = viewcnt+1
