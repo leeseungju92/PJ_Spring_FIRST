@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,5 +44,31 @@ public class BoardServiceImpl implements BoardService{
 		map.put("keyword", "%"+keyword+"%");
 		return bDao.countArticle(map);
 	}
+	
+	@Override
+	public BoardDTO viewList(int bno) {
+		return bDao.viewList(bno);
+		
+	}
+	@Override
+	public int drop(int bno) {
+		// TODO Auto-generated method stub
+		return bDao.drop(bno);
+	}
+	@Override
+	public void increaseViewcnt(int bno, HttpSession session) {
+		// TODO Auto-generated method stub
+		
+		long update_time=0;
+		if(session.getAttribute("update_time_"+bno)!=null){
+			update_time=(long) session.getAttribute("update_time_"+bno);
+		}
+		long current_time = System.currentTimeMillis();
+		if(current_time - update_time > 5000) {
+			bDao.increaseViewcnt(bno);
+			session.setAttribute("update_time_"+bno, current_time);
+		}
+	}
+	
 
 }

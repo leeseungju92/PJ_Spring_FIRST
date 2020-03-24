@@ -236,7 +236,7 @@
 							<div class="list_title_category"><a href="#">${list.type}</a></div>
 						</div>						
 						<div class="list_title_topic">
-							<a href="#">${list.title}</a>
+							<a href="${path}/board/viewList/${list.bno}">${list.title}</a>
 							<c:if test="${today == regdate}">
 								<span class="new_color twincle_eff">N</span>
 							</c:if>

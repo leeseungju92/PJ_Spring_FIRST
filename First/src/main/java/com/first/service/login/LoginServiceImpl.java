@@ -52,6 +52,8 @@ public class LoginServiceImpl implements LoginService{
 				session.removeAttribute("name");
 				session.setAttribute("userid", loginDto.getId());
 				session.setAttribute("name", loginDto.getName());
+				
+				
 			}else {
 				result = 3;
 			}

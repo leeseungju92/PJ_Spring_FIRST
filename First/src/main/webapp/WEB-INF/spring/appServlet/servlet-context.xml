@@ -51,7 +51,7 @@
 			<mapping path="/member/insert"/>
 			<mapping path="/member/pwupdate"/>
 			<mapping path="/member/drop"/>
-			<mapping path="/member/mypage"/>
+			<mapping path="/member/mypage"/>			
 			<beans:ref bean="loginInterceptor"/>
 		</interceptor>
 	</interceptors>

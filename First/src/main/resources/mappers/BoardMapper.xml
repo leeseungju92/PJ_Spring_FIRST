@@ -56,4 +56,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			  	   OR writer LIKE #{map.keyword})</otherwise>
 		</choose>
 	</sql>
+	<select id="viewList" resultType = "BoardDTO">
+		SELECT * from tbl_board
+		WHERE bno = #{param1}
+	</select>
+	<delete id="drop">
+		DELETE FROM tbl_board
+     	WHERE bno =#{param1} 
+	</delete>
+	<update id="increaseViewcnt">
+		UPDATE tbl_board
+		SET viewcnt = viewcnt+1
+		WHERE bno =#{bno}
+	</update>
 </mapper>
