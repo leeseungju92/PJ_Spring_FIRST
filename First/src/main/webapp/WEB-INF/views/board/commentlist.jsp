@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="../include/header.jsp"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ include file = "../include/include.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -130,107 +129,55 @@
 	min-height: 100px;
 	max-height: 800px;
 }
-
 </style>
-
-</head>
-
 <body>
-	<%@ include file ="../include/modal.jsp" %>	
-	<div class="content">
-		<div class="write">
-			<div class="board_name left">상세 게시글</div>
-		</div>
-		<div class="panel">
+	<div class="panel">
 			<ul>
+				<c:forEach items="${list}" var="list">
 				<li class="list_group_item flex jcsb">
-
-					<div class="list_user_info flex">
-						<img src="../../img/FIRST.png" style="width: 30px;">
+					<div class="list_title_wrapper">
 						<div class="flex">
-							<div>${map.bDto.writer}</div>
+							
+							<div class="list_title_num">${list.rno}</div>
+							<div class="list_title_category">${list.type}</div>
 						</div>
+						
+						<div class="list_title_topic">${list.writer}</div>
 					</div>
-					<div class="list_info flex">
-						<div class="list_title_icon right">
-							<i class="far fa-comment">${map.bDto.replycnt}</i> <i
-								class="far fa-thumbs-up">${map.bDto.goodcnt}</i> <i
-								class="far fa-eye">${map.bDto.viewcnt}</i>
-						</div>
-					</div>
-				</li>
-				<li class="list_group_item flex jcsb">
-					<div class="list_info flex">
-						<div class="list_title_wrapper">
-							<div class="flex">
-								<div class="list_title_num">${map.bDto.bno}</div>
-								<div class="list_title_category">${map.bDto.type}</div>
-							</div>
-							<div class="list_title_topic">${map.bDto.title}</div>
-						</div>
-					</div>
-					<div class="list_info flex right">
-						<div class="list_title_icon ">
-							<div>${map.bDto.updatedate}</div>
-						</div>
-					</div>
-				</li>
-				<li class="list_group_item flex jcsb">
-					<div class="list_info flex">
-						<div class="list_title_content">${map.bDto.content}</div>
-					</div>
-				</li>
-			</ul>
 
-			<div class="nav">
+					<div class="list_info flex">
+						<div class="list_title_icon">
+
+							<i class="far fa-thumbs-up">18</i>
+
+						</div>
+
+						<div class="list_user_info flex">
+							<div class="list_title_topic">${list.regdate}</div>
+						</div>
+					</div>
+					
+					
+				</li>
+				<li class="list_group_item flex jcsb">
+					<div class="list_info flex">
+						<div class="list_title_reply">${list.content}</div>
+					</div>
+				</li>
+				</c:forEach>
+			</ul>
+			<div class="nav" style="padding-top: 20px">
 				<div class="header_content_search">
-					
+					<div class="list_title_topic">초롱이</div>
+					<form name="frm_search" action="" method="GET">
+						<input type="text" placeholder="댓글입력" name=""
+							class="list_reply_content">
 						<ul class="header_content_sort_group ul left">
-							<li class="list"><a
-								href="${header.referer}"
-								class="btn-primary">목록</a></li>
-							<li class="list"><button class="btn-primary">답변</button></li>
+							<li class="list"><button class="btn-primary">댓글입력</button></li>
 						</ul>
-						<c:if test="${userid==map.bDto.writer}">
-						<ul class="header_content_sort_group ul right" id="updel">
-							<li class="list"><button class="btn-primary">수정</button></li>
-							<li class="list_end"><button class="btn-primary" id="btn_delete_viewList">삭제</button></li>
-						</ul>
-						</c:if>
-					
+					</form>
 				</div>
 			</div>
 		</div>
-		<div class="write">
-			<div class=" left">
-				댓글<span><i class="far fa-comment">20</i></span>
-			</div>
-		</div>
-		<div id="listReply"></div>
-	</div>
 </body>
-<script type="text/javascript">
-$(function(){
-	listReply();
-	$('#btn_delete_viewList').click(function(){		
-		$('.include_modal_wrap').css('display','flex');
-	});
-	$('#modal_msg_yes').on('click', function(){
-		location.href='${path}/board/drop?bno='+${map.bDto.bno};
-	});
-	
-		
-		
-});
-function listReply(){
-	$.ajax({
-		type: "get",
-		url: "${path}/reply/list?bno=${map.bDto.bno}",
-		success: function(result){
-			$("#listReply").html(result);
-		}
-	});
-}
-</script>
-	
 </html>
