@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.first.domain.BoardDTO;
+import com.first.domain.ReplyDTO;
 import com.first.service.board.BoardService;
 import com.first.service.board.Pager;
 
@@ -68,15 +70,6 @@ public class BoardController {
 	
 	@GetMapping("/viewList/{bno}")
 	public String viewList(HttpSession session,@PathVariable(value="bno") int bno, Model model) {		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		bService.increaseViewcnt(bno,session);
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("bDto", bService.viewList(bno));
@@ -91,5 +84,6 @@ public class BoardController {
 		bService.drop(bno);
 		return "redirect:/board/list";
 	}
+	
 	
 }

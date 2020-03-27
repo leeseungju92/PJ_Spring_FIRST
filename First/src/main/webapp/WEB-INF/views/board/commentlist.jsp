@@ -98,6 +98,11 @@
 .list_title_topic {
 	font-size: 18px;
 	font-weight: bold;
+	word-break: break-all;
+	overflow:hidden;
+	white-space:normal;
+	text-overflow:hidden;
+	max-width: 695px;
 }
 
 .list_title_icon {
@@ -129,20 +134,42 @@
 	min-height: 100px;
 	max-height: 800px;
 }
+#reply_login:hover{
+	cursor:pointer;
+}
+#reply_login{
+	color: #3885CA;
+}
+.margin-bottom{
+	margin-bottom:30px;
+}
+#reply_err_msg{
+	display:none;
+}
+#reply_del_btn{
+	height:27px;
+}
+
+
 </style>
 <body>
+
+	<div class="write"> 
+		<div class=" left">
+			댓글<span><i class="far fa-comment" id="comment_list_size">${list.size()}</i></span><span><button id="reply_refresh"><i class="fas fa-redo"></i></button></span>
+		</div>
+		
+	</div>
 	<div class="panel">
+			
 			<ul>
+				
 				<c:forEach items="${list}" var="list">
 				<li class="list_group_item flex jcsb">
 					<div class="list_title_wrapper">
-						<div class="flex">
-							
-							<div class="list_title_num">${list.rno}</div>
-							<div class="list_title_category">${list.type}</div>
-						</div>
 						
-						<div class="list_title_topic">${list.writer}</div>
+						
+						<div>${list.writer}</div>
 					</div>
 
 					<div class="list_info flex">
@@ -151,33 +178,88 @@
 							<i class="far fa-thumbs-up">18</i>
 
 						</div>
-
+					<div>
+						<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today"></fmt:formatDate>
+						<fmt:formatDate value="${list.regdate}" pattern="yyyy-MM-dd" var="regdate"></fmt:formatDate>
+						<c:choose>
+							<c:when test="${today ==regdate}">
+								<fmt:formatDate value="${list.regdate}" pattern="HH:mm:ss"/>
+							</c:when>
+							<c:otherwise>
+								<fmt:formatDate value="${list.regdate}" pattern="yyyy-MM-dd"/>
+							</c:otherwise>
+						</c:choose>
+					</div>
 						<div class="list_user_info flex">
-							<div class="list_title_topic">${list.regdate}</div>
+						
+							
 						</div>
 					</div>
 					
 					
 				</li>
-				<li class="list_group_item flex jcsb">
-					<div class="list_info flex">
-						<div class="list_title_reply">${list.content}</div>
+				<li class="list_group_item">
+					<div class="list_info flex jcsb">
+						<div class="list_title_topic">${list.content}</div>
+						<c:if test="${userid==list.writer}">
+							<button type="button" id="reply_del_btn" data_num="${list.rno}"> 댓삭</button>
+							
+						</c:if>
 					</div>
 				</li>
+				 
 				</c:forEach>
 			</ul>
-			<div class="nav" style="padding-top: 20px">
+			<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today"></fmt:formatDate>
+			<c:if test="${list.size() == 0}">
+						
+			
+				<div class="reply_content">
+				
+					<div class="reply_writer"><span>관리자</span><span>${today}</span></div>
+					<div class="reply_txt"><span>등록된 댓글이 없습니다. 댓글을 등록해주세요.</span></div>
+				</div>
+			
+			</c:if>
+			
+			<c:choose>
+			<c:when test="${empty userid}">
+				<div class="nav" style="padding-top: 20px">
 				<div class="header_content_search">
-					<div class="list_title_topic">초롱이</div>
-					<form name="frm_search" action="" method="GET">
-						<input type="text" placeholder="댓글입력" name=""
-							class="list_reply_content">
-						<ul class="header_content_sort_group ul left">
-							<li class="list"><button class="btn-primary">댓글입력</button></li>
-						</ul>
-					</form>
+					<div class="list_title_topic">댓글쓰기는 <a id="reply_login">로그인</a>이 필요한 기능입니다.</div>
+					
 				</div>
 			</div>
+			</c:when>
+			<c:otherwise>			
+			<form id="frm_reply">
+			
+			<input type="hidden"name="bno" id="reply_bno">
+			<input type="hidden"name="type" id="reply_type">
+			<input type="hidden"name="writer" id="reply_writer">
+			<div class="nav" style="padding-top: 20px">
+				<div class="header_content_search">
+					<div class="list_title_topic">${userid}</div>
+						<textarea name="content"
+							class="list_reply_content"></textarea>
+						<ul class="header_content_sort_group ul flex left margin-bottom">
+							<li class="list"><button type = "button" class="btn-primary" id ="reply_btn">댓글입력</button></li>
+							<li><div id="reply_err_msg">에라</div></li>
+						</ul>
+				</div>
+			</div>
+			
+			</form>
+			</c:otherwise>
+			</c:choose>
+			<input type="hidden"name="size" id="reply_size" value ='${list.size()}'>
 		</div>
 </body>
+<script type="text/javascript">
+	$(function(){
+		$('#reply_login').click(function(){
+			$('.modal_wrap').css('display','flex');
+		});
+	});
+</script>
 </html>

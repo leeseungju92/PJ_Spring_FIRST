@@ -27,5 +27,20 @@ public class ReplyServiceImpl implements ReplyServcie {
 		// TODO Auto-generated method stub
 		return rDao.list(bno);
 	}
+	@Override
+	public void replyInsert(ReplyDTO rDto) {
+		// TODO Auto-generated method stub
+		String type = "plus";
+		rDao.replyCntUpdate(rDto.getBno(),type);
+		
+		rDao.replyInsert(rDto);
+	}
+	@Override
+	public void replyDelete(int rno, int bno) {
+		// TODO Auto-generated method stub
+		String type = "minus";
+		rDao.replyDelete(rno);
+		rDao.replyCntUpdate(bno,type);
+	}
 
 }

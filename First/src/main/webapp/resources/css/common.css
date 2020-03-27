@@ -24,6 +24,7 @@ a{
 	.bg-color2{background-color: #EBA444;}
 	.bg-color3{background-tfcolor: #D1D1DD;}
 button.btn{
+			background-color:#3885CA;
 			display: inline-block;
 			font-weight: 600;
 			text-align: center;
@@ -44,7 +45,7 @@ button.btn{
 			border-color: #2f3138;
 		}
 		button.btn-primary{
-			background-color: #f0f0f0;			
+			background-color: #3885CA;			
 			color: white;			
 		}
 		button.btn-primary:hover{

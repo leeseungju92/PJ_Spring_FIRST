@@ -8,4 +8,8 @@ public interface ReplyServcie {
 
 	public List<ReplyDTO> list(int bno);
 
+	public void replyInsert(ReplyDTO rDto);
+
+	public void replyDelete(int rno, int bno);
+
 }

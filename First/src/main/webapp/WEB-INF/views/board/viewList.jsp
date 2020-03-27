@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -146,14 +146,14 @@
 				<li class="list_group_item flex jcsb">
 
 					<div class="list_user_info flex">
-						<img src="../../img/FIRST.png" style="width: 30px;">
+						<img src="${path}/resources/img/FIRST.png" style="width: 30px;">
 						<div class="flex">
 							<div>${map.bDto.writer}</div>
 						</div>
 					</div>
 					<div class="list_info flex">
 						<div class="list_title_icon right">
-							<i class="far fa-comment">${map.bDto.replycnt}</i> <i
+							<i class="far fa-comment" id ="viewlist_replycnt">${map.bDto.replycnt }</i><i
 								class="far fa-thumbs-up">${map.bDto.goodcnt}</i> <i
 								class="far fa-eye">${map.bDto.viewcnt}</i>
 						</div>
@@ -201,11 +201,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="write">
-			<div class=" left">
-				댓글<span><i class="far fa-comment">20</i></span>
-			</div>
-		</div>
+		
 		<div id="listReply"></div>
 	</div>
 </body>
@@ -218,19 +214,68 @@ $(function(){
 	$('#modal_msg_yes').on('click', function(){
 		location.href='${path}/board/drop?bno='+${map.bDto.bno};
 	});
-	
-		
 		
 });
+$(document).on('click','#reply_btn',function(){
+	var reply_txt = $('.list_reply_content').val();
+	
+	if(reply_txt == '' || reply_txt.length == 0) { 
+		$('.list_reply_content').focus();
+		$('#reply_err_msg').css('display','block');
+		return false;
+	}
+	
+	$('#reply_bno').val('${map.bDto.bno}');
+	$('#reply_type').val('${map.bDto.type}');
+	$('#reply_writer').val('${userid}');
+	
+	$.ajax({		
+		url : '${path}/reply/insert',
+		type : 'POST',
+		async: false,
+		data : $('#frm_reply').serialize(),		
+		success : function(){
+			
+			
+			
+			listReply();
+			
+			
+		},
+		error : function(){
+			alert('실패');
+		}			
+	});
+});	
+$(document).on('click','#reply_del_btn',function(){
+	var rno =$(this).attr("data_num");
+	var bno = '${map.bDto.bno}';
+	$.ajax({
+		url : '${path}/reply/delete',
+		type : 'POST',
+		data : {"rno":rno, 'bno':bno},
+		success : function(){
+			listReply();
+		},
+		error : function(){
+			alert('실패');
+		}
+	});
+});
+
+
 function listReply(){
 	$.ajax({
-		type: "get",
+		type: "GET",
 		url: "${path}/reply/list?bno=${map.bDto.bno}",
 		success: function(result){
 			$("#listReply").html(result);
+		
+			$('#viewlist_replycnt').text($('#comment_list_size').text());
+			
 		}
 	});
-}
+};
 </script>
 	
 </html>
