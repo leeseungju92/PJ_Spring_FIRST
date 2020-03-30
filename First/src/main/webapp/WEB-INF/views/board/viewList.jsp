@@ -207,6 +207,8 @@
 </body>
 <script type="text/javascript">
 $(function(){
+	setInterval(refreshReply,180000);
+	
 	listReply();
 	$('#btn_delete_viewList').click(function(){		
 		$('.include_modal_wrap').css('display','flex');
@@ -263,7 +265,9 @@ $(document).on('click','#reply_del_btn',function(){
 	});
 });
 
-
+$(document).on('click','#reply_refresh',function(){	
+	listReply();
+});
 function listReply(){
 	$.ajax({
 		type: "GET",
@@ -276,6 +280,10 @@ function listReply(){
 		}
 	});
 };
+function refreshReply(){
+	
+	listReply();
+}
 </script>
 	
 </html>

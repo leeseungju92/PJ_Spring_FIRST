@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.first.domain.ReplyDTO;
 
@@ -27,6 +28,7 @@ public class ReplyServiceImpl implements ReplyServcie {
 		// TODO Auto-generated method stub
 		return rDao.list(bno);
 	}
+	@Transactional
 	@Override
 	public void replyInsert(ReplyDTO rDto) {
 		// TODO Auto-generated method stub
@@ -35,6 +37,7 @@ public class ReplyServiceImpl implements ReplyServcie {
 		
 		rDao.replyInsert(rDto);
 	}
+	@Transactional
 	@Override
 	public void replyDelete(int rno, int bno) {
 		// TODO Auto-generated method stub
