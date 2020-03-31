@@ -84,6 +84,10 @@ public class BoardController {
 		bService.drop(bno);
 		return "redirect:/board/list";
 	}
-	
+	@GetMapping("/insert")
+	public String insert() {
+
+		return "board/insert";
+	}
 	
 }

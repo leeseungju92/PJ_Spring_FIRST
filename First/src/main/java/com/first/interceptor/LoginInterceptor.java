@@ -29,7 +29,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 			fMap.put("message", "nologin");
 			
 			if(referer==null) {
-				referer = "http://localhost:8081/First";
+				referer = "http://localhost:8081/first";
 			}
 			RequestContextUtils.saveOutputFlashMap(referer, request, response);
 			
