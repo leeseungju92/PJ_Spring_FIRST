@@ -594,6 +594,9 @@ div.content_wrap_main {
 	//.css()=옵션 글자색 그린		
 	//jquery 이벤트 문법 (클릭, 포커스, 블러등)
 	//$(document).on('이벤트','선택자'function())
+	var id = $('#login_id').val();
+		var pw = $('#login_pw').val();		
+		var uri = '${uri}';
 	$(document).ready(function(){		
 		var message = '${message}';
 		console.log(message);
@@ -662,11 +665,10 @@ div.content_wrap_main {
 			});
 	$(document).on('click','.close_btn',function(){
 	$('#header_modal_err_msg').css('display','none');
+	uri='';
 	});
 	$(document).on('click','#btn_login',function(){
 		
-		var id = $('#login_id').val();
-		var pw = $('#login_pw').val();		
 		
 		if(id !='' && pw!='' && pw.length !=0 && id.length !=0){
 			$.ajax({
@@ -680,8 +682,14 @@ div.content_wrap_main {
 						$('#header_modal_err_msg').css('display','block')
 						.text('로그인 중 문제가 발생했습니다. 아이디 및 비밀번호를 확인하거나 계정을 생성하십시오.');										
 					}else if(data==1){
-						console.log('로그인성공');
-						location.reload();
+						console.log('로그인성공');												
+						if(uri==''){							
+							location.reload();	
+						}else{
+							location.href=uri;
+						}
+						
+						
 					}else if(data==2){
 						$('#header_modal_err_msg').css('display','block').text('이메일 인증 후 로그인 할 수 있습니다.');
 					}
