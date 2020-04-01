@@ -84,10 +84,16 @@ public class BoardController {
 		bService.drop(bno);
 		return "redirect:/board/list";
 	}
-	@GetMapping("/insert")
+	@GetMapping("/write")
 	public String insert() {
 
-		return "board/insert";
+		return "board/register";
 	}
-	
+	@PostMapping("/write")
+	public String write(BoardDTO bDto) {
+		log.info("POST>로ㅏ이트");
+		log.info(bDto.toString());
+		bService.write(bDto);
+		return "redirect:/board/list";
+	}
 }

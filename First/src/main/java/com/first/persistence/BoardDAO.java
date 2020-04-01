@@ -20,5 +20,7 @@ public interface BoardDAO {
 
 	public void increaseViewcnt(@Param("bno")int bno);
 
+	public void write(BoardDTO bDto);
+
 	
 }

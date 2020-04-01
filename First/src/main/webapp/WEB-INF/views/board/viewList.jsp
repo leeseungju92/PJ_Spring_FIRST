@@ -188,7 +188,7 @@
 						<ul class="header_content_sort_group ul left">
 							<li class="list"><a
 								href="${header.referer}"
-								class="btn-primary">목록</a></li>
+								class="btn-primary" id="viewlist_list">목록</a></li>
 							<li class="list"><button class="btn-primary">답변</button></li>
 						</ul>
 						<c:if test="${userid==map.bDto.writer}">
@@ -216,6 +216,11 @@ $(function(){
 	$('#modal_msg_yes').on('click', function(){
 		location.href='${path}/board/drop?bno='+${map.bDto.bno};
 	});
+	var referer = '${header.referer}';
+	var reindex = referer.indexOf('board/list');
+	if(reindex==-1){
+		$('#viewlist_list').prop("href","${path}/board/list");	
+	}
 		
 });
 $(document).on('click','#reply_btn',function(){

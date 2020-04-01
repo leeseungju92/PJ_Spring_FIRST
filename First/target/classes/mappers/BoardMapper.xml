@@ -70,4 +70,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SET viewcnt = viewcnt+1
 		WHERE bno =#{bno}
 	</update>
+	<insert id="write">
+		INSERT INTO tbl_board(bno,type,title,content,writer)
+		VALUES(seq_board.NEXTVAL,#{type},#{title},#{content},#{writer})
+		
+	</insert>
 </mapper>

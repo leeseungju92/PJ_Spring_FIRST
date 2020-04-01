@@ -139,6 +139,10 @@
 .list_end {
 	margin: 0;
 }
+.err_msg{
+	color:red;
+	display:hidden;
+}
 </style>
 
 </head>
@@ -148,7 +152,7 @@
 			<div class="board_name left">게시글 등록</div>
 		</div>
 		<div class="panel">
-			<form:form>
+			<form:form id="frm_insert">
 				<ul>
 					<li class="list_group_item flex jcsb">
 
@@ -169,7 +173,7 @@
 							<option value="revu">후기 게시판</option>
 					</select></li>
 					<li class="list_group_item flex jcsb"><input
-						class="list_title_topic" name="board_insert_title"></li>
+						class="list_title_topic" name="title" id="insert_title"></li>
 					<li class="list_group_item flex jcsb"><script
 							type="text/javascript"
 							src="${path}/resources/smarteditor/js/service/HuskyEZCreator.js"
@@ -179,14 +183,15 @@
 					<li class="list_group_item flex jcsb"><input type="file"
 						name="board_insert_file"></li>
 				</ul>
+				<span class="err_msg right"></span>
 				<div class="nav">
-					<div class="header_content_search">
+					<div class="header_content_search flex jcsb">
 						<ul class="header_content_sort_group ul left">
 							<li class="list"><button type="button"
 									id="board_insert_cancle" class="btn-primary"
 									data_num="${referer}">취소</button></li>
 						</ul>
-
+						
 						<ul class="header_content_sort_group ul right">
 
 							<li class="list_end"><button type="button"
@@ -203,7 +208,15 @@
 	$(function() {
 
 		$('#board_insert').click(function() {
-			
+			var title= $('#insert_title').val();
+			if(title==''||title.length ==0){
+				$('.err_msg').css('display','block')
+							.text('제목을입력해주세요');
+				return false;
+			} else{
+				oEditors.getById["board_insert_content"].exec("UPDATE_CONTENTS_FIELD", []);
+				$('#frm_insert').submit();
+			}
 		});
 		$('#board_insert_cancle').click(function() {
 			var referer = '${header.referer}';

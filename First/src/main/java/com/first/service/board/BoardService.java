@@ -18,5 +18,7 @@ public interface BoardService {
 
 	public void increaseViewcnt(int bno, HttpSession session);
 
+	public void write(BoardDTO bDto);
+
 	
 }

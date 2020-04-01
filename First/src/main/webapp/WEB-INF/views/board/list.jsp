@@ -204,7 +204,7 @@
 		
 		<div class="write">
 			<div class="board_name left">게시판</div>
-			<a href="${path}/board/insert" class="btn-primary right btn_write"><i class="fas fa-pencil-alt"></i>새 글 쓰 기</a> 
+			<a href="${path}/board/write" class="btn-primary right btn_write"><i class="fas fa-pencil-alt"></i>새 글 쓰 기</a> 
 		</div>					
 		<div class="nav">
 			<div class="header_content_search">
