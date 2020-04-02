@@ -75,4 +75,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		VALUES(seq_board.NEXTVAL,#{type},#{title},#{content},#{writer})
 		
 	</insert>
+	<update id="update">
+		UPDATE tbl_board
+		SET title = #{title},
+			type = #{type},
+			content = #{content},
+			updatedate = sysdate	
+		WHERE bno =#{bno}
+	</update>
 </mapper>

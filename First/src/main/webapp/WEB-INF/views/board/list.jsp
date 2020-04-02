@@ -316,6 +316,8 @@
 			$('#search_info').css('display','none');
 		}
 		
+		
+		
 		$('#search_clear').click(function(){
 			location.href='${path}/board/list';
 		});

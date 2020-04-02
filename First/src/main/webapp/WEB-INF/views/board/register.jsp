@@ -149,7 +149,7 @@
 <body>
 	<div class="content">
 		<div class="write">
-			<div class="board_name left">게시글 등록</div>
+			<div class="board_name left" id="board_register_name">게시글 등록</div>
 		</div>
 		<div class="panel">
 			<form:form id="frm_insert">
@@ -168,18 +168,18 @@
 
 					<li class="list_group_item flex jcsb"><select
 						class="list_type" name="type">
-							<option value="free" selected>자유게시판</option>
+							<option value="free">자유게시판</option>
 							<option value="qna">Q&A 게시판</option>
 							<option value="revu">후기 게시판</option>
 					</select></li>
 					<li class="list_group_item flex jcsb"><input
-						class="list_title_topic" name="title" id="insert_title"></li>
+						class="list_title_topic" name="title" id="insert_title" value="${one.title}"></li>
 					<li class="list_group_item flex jcsb"><script
 							type="text/javascript"
 							src="${path}/resources/smarteditor/js/service/HuskyEZCreator.js"
 							charset="utf-8"></script> <textarea class="list_title_content"
 							name="content" id="board_insert_content"
-							style="min-width: 805px; width: 100%;"></textarea></li>
+							style="min-width: 805px; width: 100%;">${one.content}</textarea></li>
 					<li class="list_group_item flex jcsb"><input type="file"
 						name="board_insert_file"></li>
 				</ul>
@@ -206,7 +206,12 @@
 </body>
 <script type="text/javascript">
 	$(function() {
-
+		
+		if('${one}' !=''){
+			$('#board_insert').text('수정');
+			$('#board_register_name').text('게시글수정');
+			$('.list_type').val('${one.type}').attr('selected','selected');
+		}
 		$('#board_insert').click(function() {
 			var title= $('#insert_title').val();
 			if(title==''||title.length ==0){
@@ -216,6 +221,9 @@
 			} else{
 				oEditors.getById["board_insert_content"].exec("UPDATE_CONTENTS_FIELD", []);
 				$('#frm_insert').submit();
+				if('${bno}' !=''){
+					location.href="${path}/board/viewList/${map.bDto.bno}";
+				}
 			}
 		});
 		$('#board_insert_cancle').click(function() {

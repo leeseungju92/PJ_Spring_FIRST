@@ -22,5 +22,7 @@ public interface BoardDAO {
 
 	public void write(BoardDTO bDto);
 
+	public void update(BoardDTO bDto);
+
 	
 }

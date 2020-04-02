@@ -20,5 +20,7 @@ public interface BoardService {
 
 	public void write(BoardDTO bDto);
 
+	public void update(BoardDTO bDto);
+
 	
 }

@@ -171,6 +171,10 @@
 					</div>
 					<div class="list_info flex right">
 						<div class="list_title_icon ">
+							<c:if test="${map.bDto.regdate!=map.bDto.updatedate}">							
+								<div>작성날짜${map.bDto.regdate}수정됨</div>
+							</c:if>
+							
 							<div>${map.bDto.updatedate}</div>
 						</div>
 					</div>
@@ -193,7 +197,7 @@
 						</ul>
 						<c:if test="${userid==map.bDto.writer}">
 						<ul class="header_content_sort_group ul right" id="updel">
-							<li class="list"><button class="btn-primary">수정</button></li>
+							<li class="list"><a href = "${path}/board/update?bno=${map.bDto.bno}" class="btn-primary" id="btn_update_view">수정</a></li>
 							<li class="list_end"><button class="btn-primary" id="btn_delete_viewList">삭제</button></li>
 						</ul>
 						</c:if>

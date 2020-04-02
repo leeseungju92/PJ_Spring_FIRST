@@ -585,20 +585,11 @@ div.content_wrap_main {
 	</header>
 
 </body>
-<script type="text/javascript">
-	// 제이쿼리 문법
-	// $('선택자').옵션();
-	//$('#test').css('color','green');
-	//$=jquery
-	//('#test')=선택자 (id가 test)
-	//.css()=옵션 글자색 그린		
-	//jquery 이벤트 문법 (클릭, 포커스, 블러등)
-	//$(document).on('이벤트','선택자'function())
-	var id = $('#login_id').val();
-		var pw = $('#login_pw').val();		
-		var uri = '${uri}';
+<script type="text/javascript">			
+var uri = '${uri}';
+var message = '${message}';
 	$(document).ready(function(){		
-		var message = '${message}';
+		
 		console.log(message);
 		if(message=='nologin'){
 			$('.modal_wrap').css('display', 'flex');
@@ -623,7 +614,6 @@ div.content_wrap_main {
 		$('.modal_wrap').css('display', 'flex');
 		$('#login_id').focus();
 	});
-
 	$(document).on(
 			'click',
 			'.close_btn',
@@ -633,6 +623,8 @@ div.content_wrap_main {
 				$('.pw_eye').prev().attr('type', 'password');
 				$('.pw_eye').html('<i class="fas fa-eye-slash"></i>').css(
 						'color', '#AAA');
+				$('#header_modal_err_msg').css('display','none');
+				uri='';
 			});
 
 	$(document).on('focus', '.item_inp', function() {
@@ -643,8 +635,6 @@ div.content_wrap_main {
 		$(this).css('border-bottom-color', '#3885ca');
 		$(this).css('outline', 'none');
 	});
-	
-
 	$(document).on(
 			'click',
 			'.pw_eye',
@@ -663,13 +653,9 @@ div.content_wrap_main {
 				}
 
 			});
-	$(document).on('click','.close_btn',function(){
-	$('#header_modal_err_msg').css('display','none');
-	uri='';
-	});
 	$(document).on('click','#btn_login',function(){
-		
-		
+		var id = $('#login_id').val();
+		var pw = $('#login_pw').val();
 		if(id !='' && pw!='' && pw.length !=0 && id.length !=0){
 			$.ajax({
 				url:'${path}/login/in',
@@ -687,9 +673,7 @@ div.content_wrap_main {
 							location.reload();	
 						}else{
 							location.href=uri;
-						}
-						
-						
+						}						
 					}else if(data==2){
 						$('#header_modal_err_msg').css('display','block').text('이메일 인증 후 로그인 할 수 있습니다.');
 					}
@@ -700,6 +684,7 @@ div.content_wrap_main {
 			});
 		}
 	});
+	
 	$(document).on('click', '#header_btn_logout', function(){
 		$.ajax({
 			url:'${path}/login/out',
@@ -713,6 +698,7 @@ div.content_wrap_main {
 			}
 		});
 	});
+	
 	$(document).on('click', '#header_btn_join', function(){
 		location.href="${path}/member/constract";
 	});

@@ -96,4 +96,16 @@ public class BoardController {
 		bService.write(bDto);
 		return "redirect:/board/list";
 	}
+	@GetMapping("/update")
+	public String updateBoard(int bno, Model model) {
+		model.addAttribute("one", bService.viewList(bno));
+		return "/board/register";
+	}
+	@PostMapping("/update")
+	public String updateBoard(BoardDTO bDto,Model model) {
+		bService.update(bDto);
+		
+		
+		return "redirect:/board/viewList/"+bDto.getBno();
+	}
 }
