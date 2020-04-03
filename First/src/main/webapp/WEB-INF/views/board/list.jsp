@@ -255,8 +255,9 @@
 							<div>
 								<div>${list.writer}</div>								
 								<div>
+								<fmt:formatDate value="${list.updatedate}" pattern="yyyy-MM-dd" var="update"/>
 									<c:choose>
-										<c:when test="${today ==regdate}">
+										<c:when test="${today ==update}">
 											<fmt:formatDate value="${list.updatedate}" pattern="HH:mm:ss"/>
 										</c:when>
 										<c:otherwise>

@@ -20,42 +20,47 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 			throws Exception {
 		
 		HttpSession session = request.getSession();
-		if(session.getAttribute("userid")==null) {
-			log.info("NOLOGIN");
-			String referer = request.getHeader("referer");
-			
-			String uri = request.getRequestURI();
-			log.info(uri);
-			if(referer==null) {
-				referer = "http://localhost:8081/first";
+		String referer = request.getHeader("referer");
+		String uri = request.getRequestURI();
+		String ctx = request.getContextPath();		
+		String nextUrl = uri.substring(ctx.length());
+		String prevUrl = "";
+		String finalUrl ="http://localhost:8081/first/";
+		if(referer == null) {
+			response.sendRedirect(finalUrl);
+			return false;
+		}else {
+			int indexQuery = referer.indexOf("?");
+			if(indexQuery == -1) {
+				prevUrl = referer.substring(finalUrl.length()-1);
 			}else {
-				log.info("이전url"+referer);
-				int index = referer.lastIndexOf("/");
-				int len = referer.length();
-				log.info("인덱스"+index);
-				log.info("길이"+len);
-				String mapWord =referer.substring(index, len);
-				log.info("수정url"+mapWord);
-				
-				if(mapWord.equals("/write")) {
-					response.sendRedirect(request.getContextPath()+"/board/list");
-					return false;
+				prevUrl = referer.substring(finalUrl.length()-1,indexQuery);
+			}
+			if(nextUrl.equals("/board/update")||nextUrl.equals("/board/delete")) {
+				if(request.getParameter("title")==null) {
+					if(prevUrl.indexOf("board/viewList")==-1) {
+						response.sendRedirect(finalUrl);
+						return false;
+					}
 				}
 			}
-			
+		}
+				
+		if(session.getAttribute("userid")==null) {			
+			if(prevUrl.equals(nextUrl)) {
+				response.sendRedirect(finalUrl);
+				return false;
+			}
 			FlashMap fMap = RequestContextUtils.getOutputFlashMap(request);
 			fMap.put("message", "nologin");
 			fMap.put("uri", uri);
-			
-			RequestContextUtils.saveOutputFlashMap(referer, request, response);
-			
-			response.sendRedirect(referer);
-			
+			RequestContextUtils.saveOutputFlashMap(referer, request, response);			
+			response.sendRedirect(referer);			
 			return false;
-			}else {
+		}else {
 			log.info("LOGIN:)");
 			return true;
-			}
+		}
 	}
 
 	@Override
