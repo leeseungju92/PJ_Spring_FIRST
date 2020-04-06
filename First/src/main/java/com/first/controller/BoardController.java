@@ -3,7 +3,6 @@ package com.first.controller;
 import java.util.HashMap;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +13,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.first.domain.BoardDTO;
-import com.first.domain.ReplyDTO;
 import com.first.service.board.BoardService;
 import com.first.service.board.Pager;
 
@@ -90,11 +87,12 @@ public class BoardController {
 		return "board/register";
 	}
 	@PostMapping("/write")
-	public String write(BoardDTO bDto) {
+	public String write(BoardDTO bDto, Model model) {
 		log.info("POST>로ㅏ이트");
-		log.info(bDto.toString());
 		bService.write(bDto);
-		return "redirect:/board/list";
+		
+		
+		return "redirect:/board/viewList/"+bDto.getBno();
 	}
 	@GetMapping("/update")
 	public String updateBoard(int bno, Model model) {

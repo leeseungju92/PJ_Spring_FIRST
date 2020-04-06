@@ -2,8 +2,6 @@ package com.first.persistence;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Select;
-
 import com.first.domain.ProductDTO;
 
 public interface ProductDAO {
