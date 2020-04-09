@@ -153,7 +153,7 @@
 					</div>
 					<div class="list_info flex">
 						<div class="list_title_icon right">
-							<i class="far fa-comment" id ="viewlist_replycnt">${map.bDto.replycnt }</i><i
+							<i class="far fa-comment" id ="viewlist_replycnt">${map.bDto.replycnt}</i><i
 								class="far fa-thumbs-up">${map.bDto.goodcnt}</i> <i
 								class="far fa-eye">${map.bDto.viewcnt}</i>
 						</div>
@@ -181,7 +181,7 @@
 				</li>
 				<li class="list_group_item flex jcsb">
 					<div class="list_info flex">
-						<div class="list_title_content">${map.bDto.content}</div>
+						<div class="list_title_content">${map.bDto.view_content}</div>
 					</div>
 				</li>
 			</ul>
@@ -193,7 +193,7 @@
 							<li class="list"><a
 								href="${header.referer}"
 								class="btn-primary" id="viewlist_list">목록</a></li>
-							<li class="list"><button class="btn-primary">답변</button></li>
+							<li class="list"><a href = "${path}/board/answer?bno=${map.bDto.bno}" class="btn-primary" id="btn_insert_answer">답글</a></li>
 						</ul>
 						<c:if test="${userid==map.bDto.writer}">
 						<ul class="header_content_sort_group ul right" id="updel">
@@ -293,6 +293,7 @@ function refreshReply(){
 	
 	listReply();
 }
+
 </script>
 	
 </html>

@@ -16,7 +16,8 @@ public class BoardDTO {
 		private int bno;
 		private String type;
 		private String title;
-		private String content;
+		private String view_content;
+		private String search_content;
 		private String writer;
 		private int viewcnt;
 		private int replycnt;

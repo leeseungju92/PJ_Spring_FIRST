@@ -22,5 +22,11 @@ public interface BoardDAO {
 
 	public void update(BoardDTO bDto);
 
+	public void answer(BoardDTO bDto);
+
+	public void update_step(BoardDTO bDto);
+
+	
+
 	
 }

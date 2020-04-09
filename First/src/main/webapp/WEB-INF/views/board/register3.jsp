@@ -7,7 +7,6 @@
 <head>
 <meta charset="UTF-8">
 <title>board.html</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="${path}/resources/css/common.css">
 <script src="https://kit.fontawesome.com/e272fd87da.js"
@@ -204,17 +203,15 @@
 							name="view_content" id="board_insert_content"
 							style="min-width: 805px; width: 100%;">${one.view_content}</textarea>							
 							</li>
-					<div class= "input_wrap form-group">
-					<div class="board_div fileDrop">
-						<p><i class ="fas fa-paperclip"></i>첨부파일을 드래그 해주세요.
-					</div>
-					<ul class="mailbox-attachments clearfix uploadedList">
-					</ul>						
-				</div>
 					</ul>
 				
 				<span class="err_msg right"></span>
-				
+				<div class= "input_wrap form-group">
+					<div class="board_div fileDrop">
+						<p><i class ="fas fa-paperclip"></i>첨부파일을 드래그 해주세요.
+					</div>
+					<ul class="mailbox-attachments clearfix uploadedList"></ul>						
+				</div>
 				<div class="nav">
 					<div class="header_content_search flex jcsb">
 						<ul class="header_content_sort_group ul left">
@@ -249,11 +246,16 @@
 				</span>
 			</div>
 		</li>
-	</script>
+</script>	
+
+
+
+
+
+
 <script type="text/javascript">
 	var flag = '${flag}';
 	console.log('flag'+flag);
-	var fileTemplate = Handlebars.compile($("#fileTemplate").html());
 	$(function() {
 		
 		if(flag == 'update'){
@@ -324,7 +326,7 @@
 			});
 		});
 	});
-
+<script	
 	var oEditors = [];
 	nhn.husky.EZCreator.createInIFrame({
 		oAppRef : oEditors,
@@ -342,65 +344,6 @@
 			that.find(".mailbox-attachment-name").attr("data-lightbox","uploadImages");
 			that.find(".fa-paperclip").attr("class","fa fa-camera");
 		}
-	}
-	function getFileInfo(fullName){
-		var originalFileName;
-		var imgSrc;
-		var originalFileUrl;
-		var uuidFileName;
-		var basicFileName =fullName;
-		if(checkImageType(fullName)){
-			imgSrc = "${path}/upload/displayFile?fileName="+fullName;
-			uuidFileName = fullName.substr(14);
-			var originalImg =fullName.substr(0,12) + fullName.substr(14);
-			OriginalFileUrl ="${path}/upload/displayFile?fileName="+originalImg;
-		}else{
-			imgSrc = "${path}/resources/img/file-icon.png";
-			uuidFileName = fullName.substr(12);
-			originalFileUrl = "${path}/upload/displayFile?fileName="+fullName;
-		}
-		originalFileName = uuidFileName.substr(uuidFileName.indexOf("_"))
-		if(originalFileName.length>14){
-			var shortName = originalFileName.substr(0,10);
-			var formatVal = originalFileName.split(".");
-			var arrNum = formatVal.length -1;
-			originalFileName = shortName+"..."+formatVal[arrNum];
-		}
-		return {originalFileName: originalFileName, imgSrc:imgSrc,originalFileUrl:originalFileUrl,fullName:fullName,basicFileName:basicFileName};
-	}
-	function getOriginalName(fileName){
-		if(checkImageType(fileName)){
-			return;
-		}
-		var idx = fileName.indexOf("_")+1;
-		return fileName.substr(idx);
-	}
-	function getImageLink(fileName){
-		if(!checkImageType(fileName)){
-			return;
-		}
-		var front = fileName.substr(0,12);
-		var end = fileName.substr(14);
-		return fornt+end;
-	}
-	function checkImageType(fileName){
-		var pattern =/jpg|gif|png|jpeg/i;
-		return fileName.match(pattern);
-	}
-	function listAttach(){
-		var listCnt = 0;
-		$.ajax({
-			type: "POST",
-			url: "${path}/board/getAttach/${one.bno}",
-			async:false,
-			success:function(list){
-				listCnt = list.length;
-				$(list).each(function(i,e){
-					printFiles(e);
-				});
-			}
-		});
-		return listCnt;
-	}
+	}	
 </script>
 </html>

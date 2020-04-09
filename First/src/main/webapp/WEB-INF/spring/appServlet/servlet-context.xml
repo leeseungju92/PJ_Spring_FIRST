@@ -58,9 +58,16 @@
 			<mapping path="/board/write"/>		
 			<mapping path="/board/update"/>
 			<mapping path="/board/delete"/>
+			<mapping path="/board/answer"/>
 			<beans:ref bean="loginInterceptor"/>			
 		</interceptor>
 	</interceptors>
 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value="10485760"/>
+	</beans:bean>
+	<beans:bean id="uploadPath" class="java.lang.String">
+		<beans:constructor-arg value="c:/developer/upload"/>
+	</beans:bean>
 </beans:beans>
 	

@@ -236,6 +236,12 @@
 							<div class="list_title_category"><a href="#">${list.type}</a></div>
 						</div>						
 						<div class="list_title_topic">
+						<c:if test='${list.re_level != 0}'>
+							<c:forEach begin="2" end="${list.re_level}">
+								&nbsp&nbsp&nbsp
+							</c:forEach>
+							ㄴRE:					
+						</c:if>		
 							<a href="${path}/board/viewList/${list.bno}">${list.title}</a>
 							<c:if test="${today == regdate}">
 								<span class="new_color twincle_eff">N</span>

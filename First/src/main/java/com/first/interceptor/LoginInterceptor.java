@@ -26,6 +26,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 		String nextUrl = uri.substring(ctx.length());
 		String prevUrl = "";
 		String finalUrl ="http://localhost:8081/first/";
+		String qString = request.getQueryString();
 		if(referer == null) {
 			response.sendRedirect(finalUrl);
 			return false;
@@ -36,7 +37,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 			}else {
 				prevUrl = referer.substring(finalUrl.length()-1,indexQuery);
 			}
-			if(nextUrl.equals("/board/update")||nextUrl.equals("/board/delete")) {
+			if(nextUrl.equals("/board/update")||nextUrl.equals("/board/delete")||nextUrl.equals("/board/answer")) {
 				if(request.getParameter("title")==null) {
 					if(prevUrl.indexOf("board/viewList")==-1) {
 						response.sendRedirect(finalUrl);
@@ -53,6 +54,9 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 			}
 			FlashMap fMap = RequestContextUtils.getOutputFlashMap(request);
 			fMap.put("message", "nologin");
+			if(qString!=null) {
+				uri = uri +"?"+ qString;
+			}
 			fMap.put("uri", uri);
 			RequestContextUtils.saveOutputFlashMap(referer, request, response);			
 			response.sendRedirect(referer);			

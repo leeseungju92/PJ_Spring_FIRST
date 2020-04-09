@@ -89,14 +89,15 @@ public class BoardController {
 	@PostMapping("/write")
 	public String write(BoardDTO bDto, Model model) {
 		log.info("POST>로ㅏ이트");
+		log.info(bDto.toString());
 		bService.write(bDto);
-		
 		
 		return "redirect:/board/viewList/"+bDto.getBno();
 	}
 	@GetMapping("/update")
 	public String updateBoard(int bno, Model model) {
 		model.addAttribute("one", bService.viewList(bno));
+		model.addAttribute("flag","update");
 		return "/board/register";
 	}
 	@PostMapping("/update")
@@ -104,6 +105,28 @@ public class BoardController {
 		bService.update(bDto);
 		
 		
+		return "redirect:/board/viewList/"+bDto.getBno();
+	}
+	@GetMapping("/answer")
+	public String answer(BoardDTO bDto, Model model) {
+		bDto=bService.viewList(bDto.getBno());
+		String newContent = "<p style = 'font-size:20px; font-weight:bold;'>"+bDto.getView_content()+"<br>=========================================================";
+		bDto.setView_content(newContent);;
+		model.addAttribute("one", bDto);
+		model.addAttribute("flag","answer");
+		return "/board/register";		
+	}
+	@PostMapping("/answer")
+	public String answerBoard(BoardDTO bDto) {		
+		log.info("post");
+		BoardDTO prevDto = bService.viewList(bDto.getBno());
+		
+		log.info("메이인게시글"+prevDto.toString());
+		bDto.setRef(prevDto.getRef());
+		bDto.setRe_level(prevDto.getRe_level());
+		bDto.setRe_step(prevDto.getRe_step());
+		log.info("답글게시글"+bDto.toString());
+		bService.answer(bDto);
 		return "redirect:/board/viewList/"+bDto.getBno();
 	}
 }

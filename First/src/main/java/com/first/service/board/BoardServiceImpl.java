@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.first.domain.BoardDTO;
 import com.first.persistence.BoardDAO;
@@ -77,6 +78,16 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public void update(BoardDTO bDto) {
 		bDao.update(bDto);
+	}
+	
+	@Override
+	public void answer(BoardDTO bDto) {
+		
+		bDao.update_step(bDto);		
+		bDto.setRe_level(bDto.getRe_level()+1);		
+		bDto.setRe_step(bDto.getRe_step()+1);
+		bDao.answer(bDto);
+		
 	}
 	
 
