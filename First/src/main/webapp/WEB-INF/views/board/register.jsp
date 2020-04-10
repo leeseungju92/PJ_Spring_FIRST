@@ -191,12 +191,14 @@
 							<option value="free" selected>자유게시판</option>
 							<option value="qna">Q&A 게시판</option>
 							<option value="revu">후기 게시판</option>
+					
 					</select></li>
 					<li class="list_group_item flex jcsb">
 					
 						<input	class="list_title_topic" name="title" id="insert_title" value="${one.title}">
 					</li>
-					<li class="list_group_item flex jcsb"><script
+					<li class="list_group_item flex jcsb">
+					<script
 							type="text/javascript"
 							src="${path}/resources/smarteditor/js/service/HuskyEZCreator.js"
 							charset="utf-8"></script> 
@@ -208,7 +210,7 @@
 					<div class="board_div fileDrop">
 						<p><i class ="fas fa-paperclip"></i>첨부파일을 드래그 해주세요.
 					</div>
-					<ul class="mailbox-attachments clearfix uploadedList">
+					<ul class="mailbox-attachments flex clearfix uploadedList">
 					</ul>						
 				</div>
 					</ul>
@@ -237,8 +239,8 @@
 </body>
 	<script id="fileTemplate" type="text/x-handlebars-template">
 		<li>
-			<div class="mailbox-attachment-icon has-img">
-				<center><img src="{{imgSrc}}" alt="Attachment" class="s_img"></center>
+			<div class="mailbox-attachment-icon has-img" style="width=805px;">
+				<img src="{{imgSrc}}" alt="Attachment" class="s_img">
 			</div>
 			<div class="mailbox-attachment-info">
 				<a href="{{originalFileUrl}}" class="mailbox-attachment-name">
@@ -323,6 +325,26 @@
 				}
 			});
 		});
+		$('.uploadedList').on('click','.delBtn', function(event){
+			var bno = '${one.bno}';
+			var that = ${this};
+			if(bno==''){
+				$.ajax({
+					url : '${path}/upload/deleteFile',
+					type : 'POST',
+					data : {fileName: $(this).attr('data-src')},
+					success : function(data){
+						if(data=='deleted'){
+							that.parents('li').remove();							
+						}						
+					}, error: function(){
+						alert('System Error!!!!');
+					}					
+				});
+			}else{
+				
+			}
+		});
 	});
 
 	var oEditors = [];
@@ -333,7 +355,9 @@
 		fCreator : "createSEditor2"
 	});
 	function printFiles(data){
+		
 		var fileInfo = getFileInfo(data);
+		console.log(fileInfo);
 		var html = fileTemplate(fileInfo);
 		html += "<input type = 'hidden' class='file' value='"+fileInfo.fullName+"'>";
 		$(".uploadedList").append(html);
@@ -352,14 +376,14 @@
 		if(checkImageType(fullName)){
 			imgSrc = "${path}/upload/displayFile?fileName="+fullName;
 			uuidFileName = fullName.substr(14);
-			var originalImg =fullName.substr(0,12) + fullName.substr(14);
-			OriginalFileUrl ="${path}/upload/displayFile?fileName="+originalImg;
+			var originalImg =fullName.substr(0,12) + uuidFileName;
+			originalFileUrl ="${path}/upload/displayFile?fileName="+originalImg;
 		}else{
 			imgSrc = "${path}/resources/img/file-icon.png";
 			uuidFileName = fullName.substr(12);
 			originalFileUrl = "${path}/upload/displayFile?fileName="+fullName;
 		}
-		originalFileName = uuidFileName.substr(uuidFileName.indexOf("_"))
+		originalFileName = uuidFileName.substr(uuidFileName.indexOf("_")+1)
 		if(originalFileName.length>14){
 			var shortName = originalFileName.substr(0,10);
 			var formatVal = originalFileName.split(".");
@@ -400,6 +424,7 @@
 				});
 			}
 		});
+		
 		return listCnt;
 	}
 </script>
