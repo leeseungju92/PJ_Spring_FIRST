@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+
 import com.first.domain.BoardDTO;
 
 
@@ -24,5 +25,9 @@ public interface BoardService {
 
 	public void answer(BoardDTO bDto);
 
+	public List<String> getAttach(int bno);
+	
+
+	
 	
 }

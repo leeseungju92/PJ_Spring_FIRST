@@ -28,6 +28,8 @@ public interface BoardDAO {
 
 	public void addAttach(@Param("fullName")String fullName);
 
+	public List<String> getAttach(@Param("bno")int bno);
+
 	
 
 	

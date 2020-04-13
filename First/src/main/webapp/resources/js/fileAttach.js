@@ -55,16 +55,16 @@
 		var pattern =/jpg|gif|png|jpeg/i;
 		return fileName.match(pattern);
 	}
-	function listAttach(){
+	function listAttach(path,bno){
 		var listCnt = 0;
 		$.ajax({
 			type: "POST",
-			url: "${path}/board/getAttach/${one.bno}",
+			url: path+"/board/getAttach?bno="+bno,
 			async:false,
 			success:function(list){
 				listCnt = list.length;
 				$(list).each(function(i,e){
-					printFiles(e);
+					printFiles(e,path);
 				});
 			}
 		});

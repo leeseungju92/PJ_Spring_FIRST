@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.first.domain.BoardDTO;
 import com.first.service.board.BoardService;
@@ -129,4 +130,17 @@ public class BoardController {
 		bService.answer(bDto);
 		return "redirect:/board/viewList/"+bDto.getBno();
 	}
+	@ResponseBody
+	@PostMapping("/getAttach")
+	public List<String> getAttach(int bno) {
+		log.info("POST: BOARD GET ATTACH");
+		log.info("bno:>"+bno);
+		List<String> list=bService.getAttach(bno);
+		for (String string : list) {
+			log.info(string);			
+		};
+		
+		return 	list;
+	}
+	
 }

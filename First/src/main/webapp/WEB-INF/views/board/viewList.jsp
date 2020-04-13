@@ -11,6 +11,7 @@
 	href="${path}/resources/css/common.css">
 <script src="https://kit.fontawesome.com/e272fd87da.js"
 	crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
 <style type="text/css">
 .content {
 	width: 805px;
@@ -184,11 +185,13 @@
 						<div class="list_title_content">${map.bDto.view_content}</div>
 					</div>
 				</li>
+					
 			</ul>
-
+		<ul class="mailbox-attachments flex clearfix uploadedList">
+				</ul>
 			<div class="nav">
 				<div class="header_content_search">
-					
+						
 						<ul class="header_content_sort_group ul left">
 							<li class="list"><a
 								href="${header.referer}"
@@ -209,8 +212,28 @@
 		<div id="listReply"></div>
 	</div>
 </body>
+<script src="${path}/resources/js/fileAttach.js"></script>
+<script id="fileTemplate" type="text/x-handlebars-template">
+	<li>
+		<div class="mailbox-attachment-icon has-img" style="width=805px;">
+			<img src="{{imgSrc}}" alt="Attachment" class="s_img">
+		</div>
+		<div class="mailbox-attachment-info">
+			<a href="{{originalFileUrl}}" class="mailbox-attachment-name">
+				<i class="fa fa-paperclip"></i> {{originalFileName}}
+			</a>			
+		</div>
+	</li>
+</script>
 <script type="text/javascript">
+var fileTemplate = Handlebars.compile($("#fileTemplate").html());
 $(function(){
+	var listCnt = listAttach('${path}','${map.bDto.bno}');
+	console.log('FILE count' + listCnt)
+	if(listCnt == 0){
+		var text = "<span class = 'no_attach'> 첨부파일이 없습니다. </span>";
+		$('.uploadedList').html(text);
+	}
 	setInterval(refreshReply,180000);
 	
 	listReply();
