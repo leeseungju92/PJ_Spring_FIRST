@@ -70,9 +70,19 @@ public class BoardServiceImpl implements BoardService{
 			session.setAttribute("update_time_"+bno, current_time);
 		}
 	}
+	@Transactional
 	@Override
 	public void write(BoardDTO bDto) {
 		bDao.write(bDto);
+		String[] files = bDto.getFiles();
+		if(files == null) {
+			return;
+		}
+		for(String fullName : files) {
+			bDao.addAttach(fullName);
+		}
+		
+		
 		
 	}
 	@Override

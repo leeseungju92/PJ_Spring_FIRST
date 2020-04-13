@@ -99,4 +99,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			SELECT seq_board.CURRVAL FROM dual
 		</selectKey>
 	</insert>
+	<insert id="addAttach">
+		INSERT INTO tbl_attach(fullname,bno)
+		VALUES (#{fullName},seq_board.CURRVAL)
+	</insert>
 </mapper>

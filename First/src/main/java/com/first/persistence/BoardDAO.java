@@ -26,6 +26,8 @@ public interface BoardDAO {
 
 	public void update_step(BoardDTO bDto);
 
+	public void addAttach(@Param("fullName")String fullName);
+
 	
 
 	

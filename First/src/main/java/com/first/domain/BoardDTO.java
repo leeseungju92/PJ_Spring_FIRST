@@ -25,6 +25,7 @@ public class BoardDTO {
 	    private Date regdate;
 	    private Date updatedate;
 	    private String show;
+	    private String[] files;
 	    private int ref;
 	    private int re_step;
 	    private int re_level;

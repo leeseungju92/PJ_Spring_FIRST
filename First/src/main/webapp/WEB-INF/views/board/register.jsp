@@ -2,11 +2,13 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ include file="../include/header.jsp"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>board.html</title>
+<script src="${path}/resources/js/fileAttach.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="${path}/resources/css/common.css">
@@ -237,21 +239,21 @@
 
 	</div>
 </body>
-	<script id="fileTemplate" type="text/x-handlebars-template">
-		<li>
-			<div class="mailbox-attachment-icon has-img" style="width=805px;">
-				<img src="{{imgSrc}}" alt="Attachment" class="s_img">
-			</div>
-			<div class="mailbox-attachment-info">
-				<a href="{{originalFileUrl}}" class="mailbox-attachment-name">
-					<i class="fa fa-paperclip"></i> {{originalFileName}}
-				</a>
-				<span class="btn btn-default btn-xs pull-right delBtn" data-src="{{basicFileName}}">
-					<i class="fas fa-times"></i>
-				</span>
-			</div>
-		</li>
-	</script>
+<script id="fileTemplate" type="text/x-handlebars-template">
+	<li>
+		<div class="mailbox-attachment-icon has-img" style="width=805px;">
+			<img src="{{imgSrc}}" alt="Attachment" class="s_img">
+		</div>
+		<div class="mailbox-attachment-info">
+			<a href="{{originalFileUrl}}" class="mailbox-attachment-name">
+				<i class="fa fa-paperclip"></i> {{originalFileName}}
+			</a>
+			<span class="btn btn-default btn-xs pull-right delBtn" data-src="{{basicFileName}}">
+				<i class="fas fa-times"></i>
+			</span>
+		</div>
+	</li>
+</script>
 <script type="text/javascript">
 	var flag = '${flag}';
 	console.log('flag'+flag);
@@ -284,7 +286,19 @@
 				var view_content =$('#board_insert_content').val();
 				var search_content = view_content.replace(/(<([^>]+)>)/ig,"").replace("&nbsp;","");
 				$('#frm_insert').append('<textarea class="list_title_content" name="search_content" id="search_content"></textarea>');
-				$('#search_content').val(search_content);		
+				$('#search_content').val(search_content);
+				
+				
+				var str = '';
+				$('.uploadedList .file').each(function(i){
+					console.log(i);
+					str+= "<input type ='hidden',  name ='files["+i+"]' value ='"+$(this).val()+"'>";
+				});
+				/* if(deleteFileList.length >0){
+					$.post('${path}/upload/deleteAllFile', {files:deleteFileList},function(){});
+				} */
+				$("#frm_insert").append(str);
+				
 				$('#frm_insert').submit();					
 			}
 		});
@@ -321,13 +335,13 @@
 				type:'POST',
 				success:function(data){
 					console.log(data);
-					printFiles(data);
+					printFiles(data, '${path}');
 				}
 			});
 		});
 		$('.uploadedList').on('click','.delBtn', function(event){
 			var bno = '${one.bno}';
-			var that = ${this};
+			var that = $(this);
 			if(bno==''){
 				$.ajax({
 					url : '${path}/upload/deleteFile',
@@ -354,78 +368,7 @@
 		sSkinURI : "${path}/resources/smarteditor/SmartEditor2Skin.html",
 		fCreator : "createSEditor2"
 	});
-	function printFiles(data){
-		
-		var fileInfo = getFileInfo(data);
-		console.log(fileInfo);
-		var html = fileTemplate(fileInfo);
-		html += "<input type = 'hidden' class='file' value='"+fileInfo.fullName+"'>";
-		$(".uploadedList").append(html);
-		if(fileInfo.fullName.substr(12,2)==="s_"){
-			var that =$(".uploadedList li").last();
-			that.find(".mailbox-attachment-name").attr("data-lightbox","uploadImages");
-			that.find(".fa-paperclip").attr("class","fa fa-camera");
-		}
-	}
-	function getFileInfo(fullName){
-		var originalFileName;
-		var imgSrc;
-		var originalFileUrl;
-		var uuidFileName;
-		var basicFileName =fullName;
-		if(checkImageType(fullName)){
-			imgSrc = "${path}/upload/displayFile?fileName="+fullName;
-			uuidFileName = fullName.substr(14);
-			var originalImg =fullName.substr(0,12) + uuidFileName;
-			originalFileUrl ="${path}/upload/displayFile?fileName="+originalImg;
-		}else{
-			imgSrc = "${path}/resources/img/file-icon.png";
-			uuidFileName = fullName.substr(12);
-			originalFileUrl = "${path}/upload/displayFile?fileName="+fullName;
-		}
-		originalFileName = uuidFileName.substr(uuidFileName.indexOf("_")+1)
-		if(originalFileName.length>14){
-			var shortName = originalFileName.substr(0,10);
-			var formatVal = originalFileName.split(".");
-			var arrNum = formatVal.length -1;
-			originalFileName = shortName+"..."+formatVal[arrNum];
-		}
-		return {originalFileName: originalFileName, imgSrc:imgSrc,originalFileUrl:originalFileUrl,fullName:fullName,basicFileName:basicFileName};
-	}
-	function getOriginalName(fileName){
-		if(checkImageType(fileName)){
-			return;
-		}
-		var idx = fileName.indexOf("_")+1;
-		return fileName.substr(idx);
-	}
-	function getImageLink(fileName){
-		if(!checkImageType(fileName)){
-			return;
-		}
-		var front = fileName.substr(0,12);
-		var end = fileName.substr(14);
-		return fornt+end;
-	}
-	function checkImageType(fileName){
-		var pattern =/jpg|gif|png|jpeg/i;
-		return fileName.match(pattern);
-	}
-	function listAttach(){
-		var listCnt = 0;
-		$.ajax({
-			type: "POST",
-			url: "${path}/board/getAttach/${one.bno}",
-			async:false,
-			success:function(list){
-				listCnt = list.length;
-				$(list).each(function(i,e){
-					printFiles(e);
-				});
-			}
-		});
-		
-		return listCnt;
-	}
+
+
 </script>
 </html>
