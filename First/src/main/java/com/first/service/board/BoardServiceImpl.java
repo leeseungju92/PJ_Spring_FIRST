@@ -51,9 +51,11 @@ public class BoardServiceImpl implements BoardService{
 		return bDao.viewList(bno);
 		
 	}
+	@Transactional
 	@Override
 	public int drop(int bno) {
 		// TODO Auto-generated method stub
+		bDao.deleteAttach(bno);
 		return bDao.drop(bno);
 	}
 	@Override
@@ -89,15 +91,22 @@ public class BoardServiceImpl implements BoardService{
 	public void update(BoardDTO bDto) {
 		bDao.update(bDto);
 	}
-	
+	@Transactional
 	@Override
 	public void answer(BoardDTO bDto) {
+		
 		
 		bDao.update_step(bDto);		
 		bDto.setRe_level(bDto.getRe_level()+1);		
 		bDto.setRe_step(bDto.getRe_step()+1);
 		bDao.answer(bDto);
-		
+		String[] files = bDto.getFiles();
+		if(files == null) {
+			return;
+		}
+		for(String fullName : files) {
+			bDao.addAttach(fullName);
+		}
 	}
 	@Override
 	public List<String> getAttach(int bno) {

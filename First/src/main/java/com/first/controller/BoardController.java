@@ -80,6 +80,7 @@ public class BoardController {
 	public String drop(int bno) {
 		
 		bService.drop(bno);
+		
 		return "redirect:/board/list";
 	}
 	@GetMapping("/write")
@@ -91,8 +92,14 @@ public class BoardController {
 	public String write(BoardDTO bDto, Model model) {
 		log.info("POST>로ㅏ이트");
 		log.info(bDto.toString());
-		bService.write(bDto);
+		if(bDto.getFiles()==null) {
+			bDto.setFilecnt(0);
+		}else {
+			bDto.setFilecnt(bDto.getFiles().length);	
+		}
 		
+		
+		bService.write(bDto);
 		return "redirect:/board/viewList/"+bDto.getBno();
 	}
 	@GetMapping("/update")
@@ -111,7 +118,10 @@ public class BoardController {
 	@GetMapping("/answer")
 	public String answer(BoardDTO bDto, Model model) {
 		bDto=bService.viewList(bDto.getBno());
-		String newContent = "<p style = 'font-size:20px; font-weight:bold;'>"+bDto.getView_content()+"<br>=========================================================";
+		String newContent = "<p style = 'font-size:20px; font-weight:bold;'>이전게시글</p>"+bDto.getView_content()+"<br>=========================================================";
+		
+		
+		
 		bDto.setView_content(newContent);;
 		model.addAttribute("one", bDto);
 		model.addAttribute("flag","answer");
@@ -123,6 +133,11 @@ public class BoardController {
 		BoardDTO prevDto = bService.viewList(bDto.getBno());
 		
 		log.info("메이인게시글"+prevDto.toString());
+		if(bDto.getFiles()==null) {
+			bDto.setFilecnt(0);
+		}else {
+			bDto.setFilecnt(bDto.getFiles().length);	
+		}
 		bDto.setRef(prevDto.getRef());
 		bDto.setRe_level(prevDto.getRe_level());
 		bDto.setRe_step(prevDto.getRe_step());

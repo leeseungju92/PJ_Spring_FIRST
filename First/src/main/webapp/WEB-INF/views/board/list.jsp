@@ -253,14 +253,14 @@
 							<i class="far fa-comment">${list.replycnt}</i>
 							<i class="far fa-thumbs-up">${list.goodcnt}</i>
 							<i class="far fa-eye">${list.viewcnt}</i>
-							<i class="fas fa-file"></i>
+							<i class="fas fa-file">${list.filecnt}</i>
 						</div>
 
 						<div class="list_user_info flex">
 							<img src="${path}/resources/img/FIRST.png" style="width: 30px;">
 							<div>
 								<div>${list.writer}</div>								
-								<div>
+								<div style="width:72px;">
 								<fmt:formatDate value="${list.updatedate}" pattern="yyyy-MM-dd" var="update"/>
 									<c:choose>
 										<c:when test="${today ==update}">
@@ -314,7 +314,7 @@
 </body>
 <script type="text/javascript">
 	$(function(){		
-		$('#sort_'+'${map.sort_option}').css('background-color', '#3885CA');
+		$('#sort_'+'${map.sort_option}').css('background-color', '#3885CA');		
 		
 		if(!('${map.keyword}'=='')){
 			$('#search_info').css('display','block');

@@ -227,6 +227,7 @@
 </script>
 <script type="text/javascript">
 var fileTemplate = Handlebars.compile($("#fileTemplate").html());
+var deleteFileList = new Array();
 $(function(){
 	var listCnt = listAttach('${path}','${map.bDto.bno}');
 	console.log('FILE count' + listCnt)
@@ -241,8 +242,20 @@ $(function(){
 		$('.include_modal_wrap').css('display','flex');
 	});
 	$('#modal_msg_yes').on('click', function(){
+		$(".uploadedList .file").each(function(i){
+		
+			deleteFileList[i] = $(this).val();
+		});
+		if(deleteFileList.length > 0){
+			$.post('${path}/upload/deleteAllFile',
+					{files:deleteFileList},
+				function(){}	
+			);
+		}
+		
 		location.href='${path}/board/drop?bno='+${map.bDto.bno};
 	});
+	
 	var referer = '${header.referer}';
 	var reindex = referer.indexOf('board/list');
 	if(reindex==-1){

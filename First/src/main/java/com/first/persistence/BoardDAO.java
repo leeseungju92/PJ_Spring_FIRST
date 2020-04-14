@@ -30,6 +30,8 @@ public interface BoardDAO {
 
 	public List<String> getAttach(@Param("bno")int bno);
 
+	public void deleteAttach(int bno);
+
 	
 
 	

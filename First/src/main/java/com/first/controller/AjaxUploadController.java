@@ -13,7 +13,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -76,6 +78,26 @@ public class AjaxUploadController {
 		}
 		new File(uploadPath+fileName.replace('/', File.separatorChar)).delete();
 		
+		return new ResponseEntity<String>("deleted", HttpStatus.OK);
+	}
+	@ResponseBody
+	@PostMapping("/upload/deleteAllFile")
+	public ResponseEntity<String> deleteFile(@RequestParam("files[]") String[] files){
+		log.info("delete all fileName:"+ files);
+		if (files == null || files.length == 0) {
+			return new ResponseEntity<String>("deleted",HttpStatus.OK);
+			
+		}
+		for(String fileName : files) {
+			String formatName =fileName.substring(fileName.lastIndexOf(".")+1);
+			MediaType mType = MediaUtils.getMediaType(formatName);
+			if(mType!=null) {
+				String front = fileName.substring(0,12);
+				String end = fileName.substring(14);
+				new File(uploadPath+(front+end).replace('/',File.separatorChar)).delete();
+			}
+			new File(uploadPath+fileName.replace('/', File.separatorChar)).delete();
+		}
 		return new ResponseEntity<String>("deleted", HttpStatus.OK);
 	}
 }

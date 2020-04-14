@@ -22,6 +22,7 @@ public class BoardDTO {
 		private int viewcnt;
 		private int replycnt;
 		private int goodcnt;
+		private int filecnt;
 	    private Date regdate;
 	    private Date updatedate;
 	    private String show;
