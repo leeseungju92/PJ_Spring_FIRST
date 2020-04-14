@@ -77,6 +77,7 @@ public class BoardServiceImpl implements BoardService{
 	public void write(BoardDTO bDto) {
 		bDao.write(bDto);
 		String[] files = bDto.getFiles();
+		
 		if(files == null) {
 			return;
 		}
@@ -86,10 +87,25 @@ public class BoardServiceImpl implements BoardService{
 		
 		
 		
+		
+		
 	}
+	@Transactional
 	@Override
 	public void update(BoardDTO bDto) {
 		bDao.update(bDto);
+		
+		// 2. 해당 게시글 관련 첨부파일 모두 DB에서 삭제(tbl_attach)
+		bDao.deleteAttach(bDto.getBno());
+		
+		// 3. 해당 게시글의 filecnt를 수정
+		String[] files = bDto.getFiles();		
+		
+		// 4. 수정시 존재하는 첨부파일 모두 DB에 등록
+		if(files == null) return;
+		for(String fullName: files) {
+			bDao.updateAttach(fullName, bDto.getBno());
+		}		
 	}
 	@Transactional
 	@Override

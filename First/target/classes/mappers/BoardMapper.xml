@@ -83,6 +83,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			type = #{type},
 			view_content = #{view_content},
 			search_content = #{search_content},
+			filecnt = #{filecnt},
 			updatedate = sysdate	
 		WHERE bno =#{bno}
 	</update>
@@ -108,4 +109,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="deleteAttach">
 		DELETE FROM tbl_attach WHERE bno = #{bno}
 	</delete>
+	<insert id="updateAttach">
+		INSERT INTO tbl_attach(fullname,bno)
+		VALUES (#{fullName},#{bno})
+	</insert>
 </mapper>

@@ -110,9 +110,14 @@ public class BoardController {
 	}
 	@PostMapping("/update")
 	public String updateBoard(BoardDTO bDto,Model model) {
+		
+		if(bDto.getFiles() == null) { // 첨부파일 NO
+			bDto.setFilecnt(0);
+		} else { // 첨부파일 YES
+			log.info("첨부파일 수:" +bDto.getFiles().length);
+			bDto.setFilecnt(bDto.getFiles().length);
+		}
 		bService.update(bDto);
-		
-		
 		return "redirect:/board/viewList/"+bDto.getBno();
 	}
 	@GetMapping("/answer")

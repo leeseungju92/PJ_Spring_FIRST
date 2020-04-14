@@ -32,6 +32,8 @@ public interface BoardDAO {
 
 	public void deleteAttach(int bno);
 
+	public void updateAttach(@Param("fullName")String fullName, @Param("bno")int bno);
+
 	
 
 	

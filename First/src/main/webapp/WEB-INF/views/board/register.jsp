@@ -256,6 +256,7 @@
 	</li>
 </script>
 <script type="text/javascript">
+	var deleteFileList = new Array();
 	var flag = '${flag}';
 	console.log('flag'+flag);
 	var fileTemplate = Handlebars.compile($("#fileTemplate").html());
@@ -265,6 +266,8 @@
 			$('#board_insert').text('수정');
 			$('#board_register_name').text('게시글수정');
 			$('.list_type').val('${one.type}').attr('selected','selected');
+			
+			listAttach('${path}','${one.bno}');
 		}else if(flag == 'answer'){
 			$('#board_insert').text('답글');
 			$('#board_register_name').text('답글');
@@ -295,9 +298,9 @@
 					console.log(i);
 					str+= "<input type ='hidden',  name ='files["+i+"]' value ='"+$(this).val()+"'>";
 				});
-				/* if(deleteFileList.length >0){
+				if(deleteFileList.length >0){
 					$.post('${path}/upload/deleteAllFile', {files:deleteFileList},function(){});
-				} */
+				}
 				$("#frm_insert").append(str);
 				
 				$('#frm_insert').submit();					
@@ -357,6 +360,13 @@
 					}					
 				});
 			}else{
+				var arr_size = deleteFileList.length;
+				deleteFileList[arr_size] = $(this).attr('data-src');
+				$(this).parents('li').next('input').remove();
+				$(this).parents('li').remove();
+				for(var i =0; i<deleteFileList.length;i++){
+					console.log(deleteFileList[i]);
+				}
 				
 			}
 		});
