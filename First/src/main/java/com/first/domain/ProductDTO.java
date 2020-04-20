@@ -16,6 +16,12 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 public class ProductDTO {
+	public ProductDTO(String ntitle, String ncontent, String nhref) {
+		super();
+		this.ntitle = ntitle;
+		this.ncontent = ncontent;
+		this.nhref = nhref;
+	}
 	private int nno;
 	private String ntitle;
 	private String ncontent;

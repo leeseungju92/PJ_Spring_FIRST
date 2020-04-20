@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.first.domain.AttachDTO;
 import com.first.domain.BoardDTO;
 
 public interface BoardDAO {
@@ -33,6 +34,8 @@ public interface BoardDAO {
 	public void deleteAttach(int bno);
 
 	public void updateAttach(@Param("fullName")String fullName, @Param("bno")int bno);
+
+	public List<AttachDTO> getOldFiles(@Param("ydate")String ydate);
 
 	
 

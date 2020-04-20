@@ -8,5 +8,6 @@
 		<typeAlias type="com.first.domain.MemberDTO" alias="MemberDTO"/>
 		<typeAlias type="com.first.domain.BoardDTO" alias="BoardDTO"/>
 		<typeAlias type="com.first.domain.ReplyDTO" alias="ReplyDTO"/>
+		<typeAlias type="com.first.domain.AttachDTO" alias="AttachDTO"/>
 	</typeAliases>
 </configuration>

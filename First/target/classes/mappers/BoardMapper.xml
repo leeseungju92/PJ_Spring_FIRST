@@ -113,4 +113,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		INSERT INTO tbl_attach(fullname,bno)
 		VALUES (#{fullName},#{bno})
 	</insert>
+	<select id="getOldFiles" resultType ="AttachDTO">
+		SELECT * FROM tbl_attach
+		WHERE #{ydate} =TO_CHAR(regdate,'yyyy-MM-dd')
+	</select>
 </mapper>

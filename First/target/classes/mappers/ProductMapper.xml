@@ -14,4 +14,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			   )
 		WHERE rnum between 1 and 8
 	</select>
+	<insert id="addnews">
+		INSERT INTO tbl_news(nno,ntitle,ncontent,nhref)
+		VALUES(seq_news.NEXTVAL,#{ntitle},#{ncontent},#{nhref})
+	</insert>
 </mapper>
