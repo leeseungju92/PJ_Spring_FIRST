@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!-- 헤더추가 ㄴㄴ 디자인만 ㄱㄱ -->
-<%@ include file="../include/include.jsp" %>
+<%@ include file="../include/header.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,9 +40,9 @@
 		}
 		.n_logo{
 			display: block;/* 마진으로 채우기 위해*/
-			width: 216px;
-			height: 44px;
-			background: url("${path}/resources/image/img/sizechagejjin.png")0 -99px;
+			width: 80px;
+			height: 80px;
+			
 			margin: auto;/**/
 		}
 		.join_content{
@@ -263,7 +263,8 @@
 <body>
 	<div class="wrap">
 	<header><div class="header">
-		<h1 class="naver_logo"><a href="header2.html" class="n_logo"></a></h1>
+		<h1 class="naver_logo">
+			<img class="n_logo" src="${path}/resources/img/FIRSTV3.png"/></h1>
 	</div></header>
 
 	<section>
@@ -291,7 +292,7 @@
 								
 							</h3>
 							<span class="ps_box int_pass join_info_box_content">
-								<input type="text" id="upw" name="pw" class="int">
+								<input type="password" id="upw" name="pw" class="int">
 								<span class="step_url"><span class="pw_lock"></span></span>
 							</span>
 							<!-- <span class="join_err_msg">필수 정보입니다.</span> -->
@@ -302,7 +303,7 @@
 								<label for="pswd2">비밀번호 재확인</label>								
 							</h3>
 							<span class="ps_box int_pass join_info_box_content">
-								<input type="text" id="urpw" name="urpw" class="int">
+								<input type="password" id="urpw" name="urpw" class="int">
 								<span class="step_url"><span class="repw_lock"></span></span>
 							</span>
 							<span class="join_err_msg">필수 정보입니다.</span>
@@ -322,7 +323,7 @@
 
 						<div class="join_row">
 							<h3 class="join_title">
-								<label for="email">본인 확인 이메일<span class="choice">(선택)</span></label>								
+								<label for="email">본인 확인 이메일<span class="choice"></span></label>								
 							</h3>
 							<span class="ps_box join_info_box_content">
 								<input type="text" id="uemail" name="email" class="int" placeholder="본인확인 이메일" value="${user.email}">
@@ -389,13 +390,13 @@
 			
 				<div id="address">
 					<span>
-						<a href="../include/header2.html">
-						<img id="addr_logo" src="../../img/small-레알본옐로_1.png">
+						
+						<img id="addr_logo" src="">
 						</a>
 					</span>
 					<span>Copyright</span>
 					<span>@</span>
-					<span><strong><a href="#">YELLOW Corp.</a></strong></span>
+					<span><strong><a href="#">first Corp.</a></strong></span>
 					<span>All Rights Reserved.</span>
 				
 				</div>
@@ -406,7 +407,7 @@
 
 
 </body>
-<script src="../../js/daum_post.js"></script>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="${path}/resources/js/validation.js"></script>
 <script type="text/javascript">

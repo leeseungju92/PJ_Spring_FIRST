@@ -121,9 +121,10 @@
 	font-size: 27PX;
 }
 
+
 .list_title_content {
 	width: 805px;
-	min-height: 400px;
+	
 	padding-top: 30px;
 }
 
@@ -206,7 +207,7 @@
 							charset="utf-8"></script> 
 							<textarea class="list_title_content"
 							name="view_content" id="board_insert_content"
-							style="min-width: 805px; width: 100%;">${one.view_content}</textarea>							
+							style="min-width: 805px; width: 100%; minheight:100px;">${one.view_content}</textarea>							
 							</li>
 					<div class= "input_wrap form-group">
 					<div class="board_div fileDrop">

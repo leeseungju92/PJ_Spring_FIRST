@@ -61,3 +61,41 @@ button.btn{
 			background-color: #CA8420;
 			border-color: transparent;
 		}
+a.btn{
+			background-color:#3885CA;
+			display: inline-block;
+			font-weight: 600;
+			text-align: center;
+			font-size: 15px;
+			border-radius: 5px;
+			cursor: pointer;
+			padding: 11px 12px;
+			border:1px solid transparent;
+			/*background-color: white;*/
+		}
+		a.btn-basic{			
+			border: 1px solid #686f7a;
+			background-color: white;
+			color: #686f7a;
+		}
+		a.btn-basic:hover{
+			color:#2f3138;
+			border-color: #2f3138;
+		}
+		a.btn-primary{
+			background-color: #3885CA;			
+			color: white;			
+		}
+		a.btn-primary:hover{
+			background-color: #f0f0f0;
+			border-color: transparent;
+		}
+		a.btn-support{
+			border: 1px solid #eba444;
+			
+			color: white; 
+		}
+		a.btn-support:hover{
+			background-color: #CA8420;
+			border-color: transparent;
+		}

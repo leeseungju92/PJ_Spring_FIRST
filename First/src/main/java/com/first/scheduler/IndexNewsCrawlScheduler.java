@@ -11,7 +11,7 @@ public class IndexNewsCrawlScheduler {
 	@Autowired
 	IndexService iService;
 	
-	@Scheduled(cron = "30 40 16 * * *")
+	@Scheduled(cron = "0 2 14 * * *")
 	public void insertProduct() throws Exception{
 		iService.addNews();
 			// TODO Auto-generated method stub

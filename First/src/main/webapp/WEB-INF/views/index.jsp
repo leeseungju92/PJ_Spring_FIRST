@@ -16,7 +16,7 @@ div.content_main {
 	margin: 35px auto 35px;
 	box-sizing: border-box;
 	height: 350px; /*임시로 고정*/
-	border: 1px solid red;
+	
 }
  
 div.content_main_text {
@@ -24,7 +24,7 @@ div.content_main_text {
 	margin: 0 15px 0 0;
 	box-sizing: border-box;
 	height: 350px; /*임시로 고정*/
-	border: 1px solid red;
+	
 }
 
 div.content_main_easysearch {
@@ -32,26 +32,29 @@ div.content_main_easysearch {
 	width: 100%;
 	height: 50%;
 	box-sizing: border-box;
-	border: 1px solid red;
+	
 }
 
 div.content_main_easycontent {
 	width: 33.33%;
 	box-sizing: border-box;
-	border: 1px solid red;
+	
+	
 }
 
 div.content_main_easycontent_img {
 	width: 100%;
 	height: 70%;
 	line-height: 70%;
-	border: 1px solid red;
+	border: 1px solid #DADADA;
+	border-radius:2px;
 }
 
 div.content_main_easycontent_text {
 	width: 100%;
 	height: 30%;
-	border: 1px solid red;
+	border: 1px solid #DADADA;
+	border-radius:2px;
 }
 
 div.content_inf {
@@ -60,7 +63,7 @@ div.content_inf {
 	margin: 35px auto;
 	box-sizing: border-box;
 	height: 300px; /*임시로 고정*/
-	border: 1px solid red;
+	
 }
 
 div.content_inf_text {
@@ -68,7 +71,7 @@ div.content_inf_text {
 	margin: 0 10px 0 0;
 	box-sizing: border-box;
 	height: 300px; /*임시로 고정*/
-	border: 1px solid red;
+	
 	background-color: #3885ca;
 	border-radius: 3px;
 	color: white;
@@ -89,7 +92,7 @@ div.information {
 	height: 12.5%;
 	padding: 3px, 0;
 	box-sizing: border-box;
-	border: 1px solid red;
+	
 	line-height: 43.5px;
 	display: flex;
 }
@@ -99,7 +102,8 @@ div.information {
 	overflow: hidden;
 	padding: 3px, 0;
 	box-sizing: border-box;
-	border: 1px solid red;
+	border: 1px solid #DADADA;
+	border-radius:2px;
 	line-height: 43.5px;
 }
 
@@ -107,7 +111,8 @@ div.information {
 	width: 20%;
 	padding: 3px, 0;
 	box-sizing: border-box;
-	border: 1px solid red;
+	border: 1px solid #DADADA;
+	border-radius:2px;
 	line-height: 43.5px;
 	display: flex;
 	justify-content: space-around;
@@ -252,7 +257,8 @@ div.middle {
 				</div>
 
 			</div>
-			<div class="content_main_text" id="map" style="margin: 0;">
+			<div class="content_main_text" id="map" style="margin: 0;border: 1px solid #DADADA;
+	border-radius:2px;">
 				<script type="text/javascript"
 					src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8d248a3355701e98107839e3f64a7524"></script>
 				<script>

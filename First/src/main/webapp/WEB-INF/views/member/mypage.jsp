@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../include/include.jsp"%>
+<%@ include file="../include/header.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
-	<title>tumbland_secession_pwcheck.html</title>
+	<title></title>
 	<!-- favicon: 제목줄의 아이콘 -->
 	
 	<link rel="stylesheet" type="text/css" href="../../css/common.css">
@@ -19,13 +19,13 @@
 		    position: relative;
 		}
 		div.header_content {
-			width: 100%;
-			height: 60px;
+			
+			
 			margin: 0 auto;
 			padding-left: 80px;
 			padding-right: 20px;
 			box-sizing: border-box;
-			border-top: 4px solid #3885CA;
+			
 			border-bottom: 1px solid #d4d4d4;
 			display: flex;
 			justify-content: space-between; /* 가로여백 똑같이 맞추겠다 */
@@ -167,28 +167,28 @@
 									<div class="sub_info_box">
 										<div class="info_title">아이디</div>
 										<div class="tb_info_box">
-											<span>jbh158</span>
+											<span>${user.id}</span>
 										</div>
 									</div>
 									
 									<div class="sub_info_box">
 										<div class="info_title">이름</div>
 										<div class="tb_info_box">
-											<span>조보훈</span>
+											<span>${user.name}</span>
 										</div>
 									</div>
 
 									<div class="sub_info_box">
 										<div class="info_title">전화번호</div>
 										<div class="tb_info_box">
-											<span>010-9151-9230</span>
+											<span>${user.phone}</span>
 										</div>
 									</div>
 
 									<div class="sub_info_box">
 										<div class="info_title">이메일</div>
 										<div class="tb_info_box">
-											<span>ivy9230@naver.com</span>
+											<span>${user.email}</span>
 										</div>
 									</div>
 
@@ -196,13 +196,13 @@
 										<div class="info_title">주소</div>
 										<div>
 											<div class="tb_info_box">
-												<span>62298</span>
+												<span>${user.postcode}</span>
 											</div>
 											<div class="tb_info_box">
-												<span>광주광역시 광산구 신가동</span>
+												<span>${user.addr1}</span>
 											</div>
 											<div class="tb_info_box">
-												<span>975-3</span>
+												<span>${user.addr2}</span>
 											</div>
 										</div>
 									</div>

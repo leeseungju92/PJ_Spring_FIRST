@@ -190,8 +190,7 @@
 		<ul class="mailbox-attachments flex clearfix uploadedList">
 				</ul>
 			<div class="nav">
-				<div class="header_content_search">
-						
+				<div class="header_content_search">						
 						<ul class="header_content_sort_group ul left">
 							<li class="list"><a
 								href="${header.referer}"

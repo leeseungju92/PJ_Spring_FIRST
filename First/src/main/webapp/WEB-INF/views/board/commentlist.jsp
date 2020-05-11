@@ -175,7 +175,7 @@
 					<div class="list_info flex">
 						<div class="list_title_icon">
 
-							<i class="far fa-thumbs-up">18</i>
+							<i class="far fa-thumbs-up">0</i>
 
 						</div>
 					<div>

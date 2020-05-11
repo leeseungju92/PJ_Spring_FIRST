@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../include/include.jsp"%>
+<%@ include file="../include/header.jsp"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
@@ -182,7 +182,7 @@
 				</div>							
 			</div><!-- row_group -->							
 			<div class="btn_double_area">
-				<button type="button" id="btn_join" class="btn-big btn_type btn_agree btn-primary">비민번호수정</button>					
+				<button type="button" id="btn_join" class="btn-big btn_type btn_agree btn-primary">비밀번호수정</button>					
 			</div>
 		</div>
 	</div>	
@@ -308,7 +308,7 @@
 				if(!checkArr[i]){
 					invalidAll = false;
 					$('.join_err_msg:eq('+i+')').css('visibility','visible')
-												.css('color','#3885ca');
+												.css('color','red');
 				}
 			}
 			if(invalidAll){

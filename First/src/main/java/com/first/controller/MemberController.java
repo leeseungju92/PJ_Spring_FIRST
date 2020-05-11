@@ -181,7 +181,10 @@ public class MemberController {
 	}
 	
 	@GetMapping("/mypage") 
-	public String mypage() {		
+	public String mypage(HttpSession session, Model model) {
+		String id= (String)session.getAttribute("userid");
+		model.addAttribute("user", mService.userView(id));
+		
 		return "member/mypage";
 	}
 	@GetMapping("/dropAction")

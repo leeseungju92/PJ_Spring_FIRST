@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../include/include.jsp"%>
+<%@ include file="../include/header.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
-	<title>tumbland_contract.html</title>
+	<title>first_contract.html</title>
 	<link rel="stylesheet" type="text/css" href="${path}/resources/css/common.css">
 	<!-- favicon: 제목줄의 아이콘 -->	
 	<style type="text/css">
@@ -51,13 +51,13 @@
 		}
 		.n_logo {
 			display: block;
-			width: 300px;
+			width: 80px;
 			height: 80px;
 			/*width: 240px;*/
 			/*height: 44px;*/
-			background: url(${path}/resources/img/tumbland_logo_transparent_crop.png) 100% 50% no-repeat;
-			background-size: 300px 80px;
-			margin: 0 210px;
+			
+			
+			margin: 0 auto;
 		}
 		.lang {
 			position: absolute;
@@ -151,19 +151,19 @@
 			/*display: inline-block;*/
 			overflow: hidden;
 			float: left;
-			width: 20px;
-			height: 20px;
+			width: 24px;
+			height: 24px;
 			margin: 1px 8px 0 0;
-			background: url(${path}/resources/img/ico_account.png);
-			background-position: -30px -30px;
+			background: url(${path}/resources/img/check_off.gif);
+			
 		}
 		.ul_li_span > input:checked +label > .icon_check {
 			/*background-position: 0 -30px;*/
-			background: url(${path}/resources/img/ico_account_copy.png);
+			background: url(${path}/resources/img/check_in.png);
 		}
 		.terms_span > input:checked +label > .icon_check {
 			/*background-position: 0 -30px;*/
-			background: url(${path}/resources/img/ico_account_copy.png);
+			background: url(${path}/resources/img/check_in.png);
 		}
 		.terms_span > label > span {
 			display: inline-block;
@@ -326,7 +326,7 @@
 		<header>
 			<div id="header">
 				<h1 class="naver_logo">
-					
+					<img class="n_logo" src="${path}/resources/img/FIRSTV3.png"/> 
 				</h1>
 				<div class="lang">
 					<select class="langselect"> <!-- select태그 크롬:삼각형 다른웹브라우저 다른걸로 나옴 -->
@@ -364,17 +364,17 @@
 									<input type="checkbox" id="li1box" class="ckboxs">
 									<label for="li1box" class="label1">
 										<span class="icon_check"></span>
-										네이버 이용약관 동의<span class="span_only">(필수)</span>
+										first 이용약관 동의<span class="span_only">(필수)</span>
 									</label>
 								</span>
 								<div class="terms_box">
 									<div class="article">
 										<h3 class="article_title">여러분을 환영합니다.</h3>
-										<p>네이버 서비스 및 제품(이하 ‘서비스’)을 이용해 주셔서 감사합니다. 본<br>
-										 약관은 다양한 네이버 서비스의 이용과 관련하여 네이버 서비스를 제공<br>
-										 하는 네이버 주식회사(이하 ‘네이버’)와 이를 이용하는 네이버 서비스<br>
+										<p>first 서비스 및 제품(이하 ‘서비스’)을 이용해 주셔서 감사합니다. 본<br>
+										 약관은 다양한 first 서비스의 이용과 관련하여 first 서비스를 제공<br>
+										 하는 first 주식회사(이하 ‘first’)와 이를 이용하는 first 서비스<br>
 										 회원(이하 ‘회원’) 또는 비회원과의 관계를 설명하며, 아울러 여러분의<br>
-										 네이버 서비스 이용에 도움이 될 수 있는 유익한 정보를 포함하고 있습니다.</p>
+										 first 서비스 이용에 도움이 될 수 있는 유익한 정보를 포함하고 있습니다.</p>
 									</div>
 								</div>
 							</li>
@@ -389,7 +389,7 @@
 								</span>
 								<div class="terms_box">
 									<div class="article">
-										<p>정보통신망법 규정에 따라 네이버에 회원가입 신청하시는 분께 수집하는 개인정보의 항목, 개인정보의 수집 및 이용목적, 개인정보의 보유 및 이용기간을 안내 드리오니 자세히 읽은 후 동의하여 주시기 바랍니다.</p>
+										<p>정보통신망법 규정에 따라 first에 회원가입 신청하시는 분께 수집하는 개인정보의 항목, 개인정보의 수집 및 이용목적, 개인정보의 보유 및 이용기간을 안내 드리오니 자세히 읽은 후 동의하여 주시기 바랍니다.</p>
 										<h3 class="article_title">1. 수집하는 개인정보</h3>
 									</div>
 								</div>
@@ -405,7 +405,7 @@
 								</span>
 								<div class="terms_box">
 									<div class="article">
-										<p>위치정보 이용약관에 동의하시면, <strong>위치를 활용한 광고 정보 수신</strong> 등을 포함하는 네이버 위치기반 서비스를 이용할 수 있습니다.</p>
+										<p>위치정보 이용약관에 동의하시면, <strong>위치를 활용한 광고 정보 수신</strong> 등을 포함하는 first 위치기반 서비스를 이용할 수 있습니다.</p>
 										<h3 class="article_title">제 1 조 (목적)</h3>
 									</div>
 								</div>
@@ -423,7 +423,7 @@
 						</ul>
 					</div>
 					<div class="err_check">
-						<span class="err_check_msg">네이버 이용약관과 개인정보 수집 및 이용에 대한 안내 모두 동의해주세요.</span>
+						<span class="err_check_msg">first 이용약관과 개인정보 수집 및 이용에 대한 안내 모두 동의해주세요.</span>
 					</div>
 					<div class="btn_double_area">
 						<span><button type="button" id="con_btn_cancle" class="btn_type btn_default">취소</button></span>
@@ -467,8 +467,7 @@
 			}
 		});
 		$('.ckboxs').on('click', function(){
-			var cklen = $('.ckboxs:checkbox:checked').length;
-			
+			var cklen = $('.ckboxs:checkbox:checked').length;			
 			if(cklen != 4){
 				$('#cbox').prop('checked' , false);
 			} else{

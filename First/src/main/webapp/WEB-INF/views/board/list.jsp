@@ -50,7 +50,16 @@
 			color: white;
 		}
 		.btn_write{
+			margin-top:9px;
 			height: 44px;
+			background-color: #3885CA;			
+			color: white;
+			line-height:44px;			
+			font-weight: 600;
+			text-align: center;
+			font-size: 15px;
+			border-radius: 5px;
+			cursor: pointer;	
 		}
 
 		.nav{
@@ -204,7 +213,7 @@
 		
 		<div class="write">
 			<div class="board_name left">게시판</div>
-			<a href="${path}/board/write" class="btn-primary right btn_write"><i class="fas fa-pencil-alt"></i>새 글 쓰 기</a> 
+			<a href="${path}/board/write" class="right btn_write"><i class="fas fa-pencil-alt"></i>새 글 쓰 기</a> 
 		</div>					
 		<div class="nav">
 			<div class="header_content_search">
@@ -281,16 +290,12 @@
 			</ul>
 		</div>
 		<div class="page">
-			<ul class="pagination">
-			
+			<ul class="pagination">			
 				<c:if test="${map.pager.curBlock>1}">
 					<li><a href="${path}/board/list?curPage=${map.pager.blockBegin-10}&sort_option=${map.sort_option}&keyword=${map.keyword}" class="first page_left"><i class="fas fa-angle-left" style="font-size:14px;"></i></a></li>
 					<li><a href="${path}/board/list?curPage=1&sort_option=${map.sort_option}&keyword=${map.keyword}" class="pagination_arrow page_left">1</a></li>
 					<li><span class="left">...</span></li>
-				</c:if>
-				
-				
-				
+				</c:if>				
 				<c:forEach var="num" begin="${map.pager.blockBegin}" end="${map.pager.blockEnd}">
 				<c:choose>
 					<c:when test="${num == map.pager.curPage}">
@@ -300,9 +305,7 @@
 						<li><a href="${path}/board/list?curPage=${num}&sort_option=${map.sort_option}&keyword=${map.keyword}" class="active num">${num}</a></li>	
 					</c:otherwise>			
 				</c:choose>
-				</c:forEach>
-				
-												
+				</c:forEach>											
 				<c:if test="${map.pager.curBlock < map.pager.totBlock}">
 					<li><span class="left">...</span></li>
 					<li><a href="${path}/board/list?curPage=${map.pager.totPage}&sort_option=${map.sort_option}&keyword=${map.keyword}" class="first page_left">${map.pager.totPage}</a></li>

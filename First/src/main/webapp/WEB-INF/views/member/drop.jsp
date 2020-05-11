@@ -1,7 +1,7 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="../include/include.jsp"%>
+<%@ include file="../include/header.jsp"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
@@ -327,7 +327,7 @@ a {
 
 .pw_lock {
 	background-image:
-		url('https://static.nid.naver.com/images/ui/join/m_icon_pw_step.png');
+		url('https://static.nid.first.com/images/ui/join/m_icon_pw_step.png');
 	background-repeat: no-repeat;
 	background-size: 125px 75px;
 	cursor: pointer;
@@ -506,7 +506,7 @@ td {
 }
 
 #state>label {
-	background: url('../../img/check_off.gif') no-repeat;
+	background: url('${path}/resources/img/check_off.gif') no-repeat;
 	display: block;
 	height: 26px;
 	line-height: 26px;
@@ -523,7 +523,7 @@ td {
 }
 
 #state>input:checked+label {
-	background-image: url('../../img/check_in.png');
+	background-image: url('${path}/resources/img/check_in.png');
 }
 
 .fix_btn>button {
@@ -669,7 +669,7 @@ td {
 			display: none;
 		}
 		.pw_lock{
-			background-image: url('https://static.nid.naver.com/images/ui/join/m_icon_pw_step.png'); 
+			background-image: url('https://static.nid.first.com/images/ui/join/m_icon_pw_step.png'); 
 			background-repeat: no-repeat;
 			background-size: 125px 75px;
 			cursor: pointer;
@@ -827,7 +827,7 @@ td {
 			height: 26px;
 		}
 		#state > label {
-			background:  url('../../img/check_off.gif') no-repeat;
+			background:  url('${path}/resources/img/check_off.gif') no-repeat;
 			display: block;
 			height: 26px;
 			line-height: 26px;
@@ -844,7 +844,7 @@ td {
 		#state > input:checked +label{
 			
 			
-			background-image: url('../../img/check_in.png');
+			background-image: url('${path}/resources/img/check_in.png');
 		}
 		.fix_btn > button{
 			color: rgb(142,142,142);
@@ -913,7 +913,7 @@ td {
 
 	<header>
 		<div class="header">
-			<h1 class="naver_logo">
+			<h1 class="first_logo">
 				<a href="../" class="n_logo">FIRST</a>
 			</h1>
 		</div>
@@ -941,9 +941,9 @@ td {
 					삭제되어 본인 여부를 확인할 수 있는 방법이 없어, 게시글을 임의로 삭제해드릴 수 없습니다.
 				</div>
 				<div class="sectiondelete">
-					<strong>네이버 아이디를 사용해 다른 서비스에 로그인 할 수 없게 됩니다.</strong><br>
-					<br>네이버 아이디로 로그인하여 사용 중이던 외부 사이트를 방문하여 다른 로그인 수단을 준비하거나, 데이터를
-					백업한 후 네이버 회원을 탈퇴해야 합니다.
+					<strong>first 아이디를 사용해 다른 서비스에 로그인 할 수 없게 됩니다.</strong><br>
+					<br>first 아이디로 로그인하여 사용 중이던 외부 사이트를 방문하여 다른 로그인 수단을 준비하거나, 데이터를
+					백업한 후 first 회원을 탈퇴해야 합니다.
 				</div>
 				<div class="sectiondelete">
 					<strong>동일 아이디로 다시 가입할 수 없으며 아이디와 데이터는 복구할 수 없습니다.</strong><br>
@@ -973,7 +973,7 @@ td {
 			<span class="join_err_msg">약관에 동의가 필요합니다.</span> 
 			
 			<div class="btn_double_area">
-				<button type="button" id="btn_join" class="btn-big btn_type btn_agree btn-primary">비민번호수정</button>					
+				<button type="button" id="btn_join" class="btn-big btn_type btn_agree btn-primary">회원탈퇴</button>					
 			</div>
 				
 			</div>

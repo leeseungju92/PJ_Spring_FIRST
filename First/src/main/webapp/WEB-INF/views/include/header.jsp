@@ -62,13 +62,13 @@ div.header_content {
 	width: 44px;
 	height: 44px;
 	cursor: pointer;
-	color: #FCBE32;
+	color: #3885ca;
 	border-top-right-radius: 2px; /*돋보기에 커서올렸을때 오르쪽모서리만 둥글게 해주는기능*/
 	border-bottom-right-radius: 2px;
 }
 
 .header_content_search_btn:hover {
-	background-color: #FCBE32;
+	background-color: #3885ca;
 	color: white;
 }
 
@@ -102,7 +102,7 @@ div.header_content {
 }
 
 .header_content_dropdown_group>a {
-	padding: 12px 15px;
+	padding: 12px 4px;;
 	font-weight: 400;
 	border: 1px solid transparent;
 	border-radius: 2px;
@@ -110,6 +110,7 @@ div.header_content {
 	color: #506763;
 	line-height: 19px;
 	display: inline-block;
+	font-size : 14px;
 }
 
 .header_content_dropdown_wrap:hover>div>a, /*호버 한번에 두개 주는법*/
@@ -249,7 +250,7 @@ h1 {
 }
 
 .info_user a {
-	color: #4c4c4c;
+	color: #3885ca;
 	text-decoration: none;
 	cursor: pointer;
 }
@@ -353,7 +354,7 @@ div.content_wrap_main {
 }
 .top_btn{
 			bottom: 115px;
-			background-color: #414d41;
+			background-color: #3885ca;
 			display: none;
 			
 		}
@@ -370,7 +371,7 @@ div.content_wrap_main {
 			color: white;
 			width: 70px;
 			height: 70px;
-			background-color: #7d2c38;
+			background-color: #3885ca;
 			border-radius: 50%;
 			display: flex;
 			justify-content: center;
@@ -402,15 +403,13 @@ div.content_wrap_main {
 			</div>
 			<h1 id="kakaoServiceLogo" style="margin: 0 0 30px">
 				<span class="ir_wa">FIRST</span>
-
+							
 			</h1>
-
+			<div id="header_modal_err_msg"></div>
 			<div id="loginEmailField">
 				
 				
-				<div id="header_modal_err_msg">
-					
-				</div>
+				
 				<form onsubmit="return false;"class="frm_login">
 					
 					
@@ -594,7 +593,8 @@ var message = '${message}';
 		if(message=='nologin'){
 			$('.modal_wrap').css('display', 'flex');
 			$('#login_id').focus();
-			$('.err_content').css('display','block')
+			$('#header_modal_err_msg').css('display','block')
+									.css('color', 'red')
 							 .text('로그인이 필요한 기능입니다.');
 		}
 		
@@ -628,7 +628,7 @@ var message = '${message}';
 			});
 
 	$(document).on('focus', '.item_inp', function() {
-		$(this).css('border-bottom-color', '#FCBE32');
+		$(this).css('border-bottom-color', '#3885ca');
 		$(this).css('outline', 'none');
 	});
 	$(document).on('blur', '.item_inp', function() {

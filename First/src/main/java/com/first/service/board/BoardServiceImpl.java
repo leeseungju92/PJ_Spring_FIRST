@@ -83,12 +83,7 @@ public class BoardServiceImpl implements BoardService{
 		}
 		for(String fullName : files) {
 			bDao.addAttach(fullName);
-		}
-		
-		
-		
-		
-		
+		}		
 	}
 	@Transactional
 	@Override

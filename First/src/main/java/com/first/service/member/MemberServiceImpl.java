@@ -85,4 +85,6 @@ public class MemberServiceImpl implements MemberService{
 		//return mDao.memUpdate(mDto); 수정에 성공했나 볼려고 하는것이니까 지워도 된다.
 	}
 
+	
+
 }
