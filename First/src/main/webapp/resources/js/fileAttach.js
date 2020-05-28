@@ -6,8 +6,7 @@
 		html += "<input type = 'hidden' class='file' value='"+fileInfo.fullName+"'>";
 		$(".uploadedList").append(html);
 		if(fileInfo.fullName.substr(12,2)==="s_"){
-			var that =$(".uploadedList li").last();
-			that.find(".mailbox-attachment-name").attr("data-lightbox","uploadImages");
+			var that =$(".uploadedList li").last();			
 			that.find(".fa-paperclip").attr("class","fa fa-camera");
 		}
 	}

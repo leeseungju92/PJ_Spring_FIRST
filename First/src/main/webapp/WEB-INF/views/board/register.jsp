@@ -316,13 +316,15 @@
 				location.href = referer;
 			}			
 		});
-		
+		//첨부파일 드래그&드롭 기본옵션 막기
 		$('.fileDrop').on('dragenter dragover' , function(e){
 			e.preventDefault();			
 		});
 		
 		$('.fileDrop').on('drop',function(e){
 			e.preventDefault();
+			
+			
 			
 			var files = e.originalEvent.dataTransfer.files;
 			var file = files[0];
@@ -335,8 +337,8 @@
 				url:'${path}/upload/uploadAjax',
 				data: formData,
 				datatype:'text',
-				processData:false,
-				contentType:false,
+				processData:false,//쿼리스트링방식 x
+				contentType:false,//데이터타입(multipart)
 				type:'POST',
 				success:function(data){
 					console.log(data);

@@ -9,5 +9,6 @@
 		<typeAlias type="com.first.domain.BoardDTO" alias="BoardDTO"/>
 		<typeAlias type="com.first.domain.ReplyDTO" alias="ReplyDTO"/>
 		<typeAlias type="com.first.domain.AttachDTO" alias="AttachDTO"/>
+		<typeAlias type="com.first.domain.DailyDTO" alias="DailyDTO"/>
 	</typeAliases>
 </configuration>
